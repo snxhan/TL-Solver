@@ -23,7 +23,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
-        android:id="@+id/scrollView"
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -403,17 +403,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/vg_inputs" />
 
             <Button
-                android:id="@+id/buttonLoadTestVariables"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Load"
-                app:layout_constraintEnd_toStartOf="@+id/verticalGuideline_inputs"
-                app:layout_constraintHorizontal_bias="0.402"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/zg_inputs_re" />
-
-            <Button
                 android:id="@+id/buttonSolve"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -522,7 +511,6 @@
                         app:layout_constraintStart_toEndOf="@+id/imageView2"
                         app:layout_constraintTop_toTopOf="@+id/imageView2"
                         app:layout_constraintVertical_bias="0.5" />
-
                     <!--  katex.hourglass.in.mathlib.MathView -->
                     <katex.hourglass.in.mathlib.MathView
                         android:id="@+id/refCoeff_outputs_results"
@@ -558,77 +546,30 @@
                         android:background="#CECECE"
                         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-                        app:layout_constraintTop_toBottomOf="@+id/textView14"
-                        />
+                        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                     <!-- katex.hourglass.in.mathlib.MathView -->
                     <katex.hourglass.in.mathlib.MathView
                         android:id="@+id/mvRefCoeffStepsBySteps"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
                         android:text="aaaaaaaasdfasdfasdfa"
-                        app:layout_constraintBottom_toTopOf="@+id/tvExpand1_1"
-                        app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-                        app:layout_constraintHorizontal_bias="0.2"
-                        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-                        app:layout_constraintTop_toBottomOf="@+id/divider1"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
-
-                    <!-- katex.hourglass.in.mathlib.MathView -->
-                    <TextView
-                        android:id="@+id/tvExpand1_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Expand"
-                        app:layout_constraintBottom_toTopOf="@+id/mvRefCoeffStepsBySteps_1"
-                        app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-                        app:layout_constraintHorizontal_bias="0.15"
-                        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-                        app:layout_constraintTop_toBottomOf="@+id/mvRefCoeffStepsBySteps" />
-
-                    <ImageView
-                        android:id="@+id/show_1_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="4dp"
-                        android:padding="4dp"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintLeft_toRightOf="@+id/tvExpand1_1"
-                        app:layout_constraintRight_toLeftOf="@id/guidelineRight"
-                        app:layout_constraintTop_toBottomOf="@+id/mvRefCoeffStepsBySteps"
-                        app:srcCompat="@android:drawable/arrow_down_float"
-                        app:tint="@color/primary" />
-
-                    <!-- katex.hourglass.in.mathlib.MathView -->
-                    <katex.hourglass.in.mathlib.MathView
-                        android:id="@+id/mvRefCoeffStepsBySteps_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="aaaaaaaasdfasdfasdfa"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
                         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
                         app:layout_constraintHorizontal_bias="0.2"
                         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-                        app:layout_constraintTop_toBottomOf="@+id/tvExpand1_1"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
-
+                        app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
                     <androidx.constraintlayout.widget.Group
-                        android:id="@+id/card_group1"
+                        android:id="@+id/card_group"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:visibility="gone"
-                        app:constraint_referenced_ids="mvRefCoeffStepsBySteps,divider1,show_1_1"
-                        tools:visibility="visible" />
+                        app:constraint_referenced_ids="mvRefCoeffStepsBySteps,divider1"
 
-                    <androidx.constraintlayout.widget.Group
-                        android:id="@+id/card_group1_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        app:constraint_referenced_ids="mvRefCoeffStepsBySteps_1,show_1_1"
                         tools:visibility="visible" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>
@@ -707,7 +648,6 @@
                         app:layout_constraintStart_toEndOf="@+id/imageView2"
                         app:layout_constraintTop_toTopOf="@+id/imageView2"
                         app:layout_constraintVertical_bias="0.5" />
-
                     <!--  katex.hourglass.in.mathlib.MathView -->
                     <katex.hourglass.in.mathlib.MathView
                         android:id="@+id/power_outputs_results"
@@ -760,7 +700,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
                     <androidx.constraintlayout.widget.Group
-                        android:id="@+id/card_group2"
+                        android:id="@+id/card_group"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:visibility="gone"

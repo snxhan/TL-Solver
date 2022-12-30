@@ -27,16 +27,25 @@ package hourglass.github.in.katex;
 
 
 
+import android.util.Log;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.Objects;
 
+import hourglass.github.in.katex.activities.VariablesSolver;
+
 public class Complex {
-    private final double re;   // the real part
-    private final double im;   // the imaginary part
+    public final double re;   // the real part
+    public final double im;   // the imaginary part
 
     // create a new object with the given real and imaginary parts
     public Complex(double real, double imag) {
-        re = real;
-        im = imag;
+        // set decimal places
+        re = Double.valueOf(String.format("%."+ (Integer.valueOf(VariablesSolver.loadDP())) + "f", real));
+        im = Double.valueOf(String.format("%."+ (Integer.valueOf(VariablesSolver.loadDP())) + "f", imag));
     }
 
     // return a string representation of the invoking Complex object
@@ -49,12 +58,21 @@ public class Complex {
 
     // return abs/modulus/magnitude
     public double abs() {
-        return Math.hypot(re, im);
+        return Double.valueOf(String.format("%."+ (Integer.valueOf(VariablesSolver.loadDP())) + "f", Math.hypot(re, im)));
     }
 
     // return angle/phase/argument, normalized to be between -pi and pi
     public double phase() {
-        return Math.atan2(im, re);
+        return Double.valueOf(String.format("%."+ (Integer.valueOf(VariablesSolver.loadDP())) + "f", Math.atan2(im, re)));
+    }
+
+    // return angle/phase/argument in DEGREES
+    public double phaseDeg() {
+        double theta = Double.valueOf(String.format("%."+ (Integer.valueOf(VariablesSolver.loadDP())) + "f", Math.toDegrees(phase())));
+//        if(theta <0.0){
+//            theta += 360.0;
+//        }
+        return theta;
     }
 
     // return a new Complex object whose value is (this + b)
@@ -128,7 +146,6 @@ public class Complex {
     }
 
 
-
     // a static version of plus
     public static Complex plus(Complex a, Complex b) {
         double real = a.re + b.re;
@@ -168,23 +185,6 @@ public class Complex {
 //        StdOut.println("conj(a)      = " + a.conjugate());
 //        StdOut.println("|a|          = " + a.abs());
 //        StdOut.println("tan(a)       = " + a.tan());
-    }
-
-    // return a string with steps for complex multiplication
-    public String times_showSteps(Complex b) {
-        Complex a = this;
-        double real = a.re * b.re - a.im * b.im;
-        double imag = a.re * b.im + a.im * b.re;
-
-        String steps = "";
-        //step 1 a = a.re, b = a.im, c = b.re, d = b.im
-        steps += "Step 1: Apply complex arithmetic rule: (a+bi)(c+di) = (ac-bd)+(ad+bc)i \n";
-        steps += "(" + a.re + " * " + b.re + " - " + a.im + " * " + b.im + ") + (" + a.re + " * " + b.im + " + " + a.im + " * " + b.re + ")i \n";
-        steps += "Step 2: Expand \n";
-        steps += "(" + (a.re * b.re) + " - " + (a.im * b.im) + ") + (" + (a.re * b.im) + " + " + (a.im * b.re) + ")i\n" ;
-        steps += "Step 3: Simplify \n";
-        steps += "(" + ((a.re * b.re)-(a.im * b.im)) + ") + (" + ((a.re * b.im)+(a.im * b.re)) + ")i" ;
-        return steps;
     }
 
 }

@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.math.RoundingMode;
 
 import hourglass.github.in.katex.activities.VariablesSolver;
@@ -30,7 +31,8 @@ public class ComplexBD extends AppCompatActivity {
     public String toPString() {
         if (im.compareTo(BigDecimal.ZERO) == 0) return re.toPlainString() + "";
         if (re.compareTo(BigDecimal.ZERO) == 0) return im.toPlainString() + "i";
-        if (im.compareTo(BigDecimal.ZERO) <  0) return re.toPlainString() + " - " + (im.negate().toPlainString()) + "i";
+        if (im.compareTo(BigDecimal.ZERO) < 0)
+            return re.toPlainString() + " - " + (im.negate().toPlainString()) + "i";
         return re.toPlainString() + " + " + im.toPlainString() + "i";
     }
 
@@ -38,7 +40,7 @@ public class ComplexBD extends AppCompatActivity {
     public String toString() {
         if (im.compareTo(BigDecimal.ZERO) == 0) return re + "";
         if (re.compareTo(BigDecimal.ZERO) == 0) return im + "i";
-        if (im.compareTo(BigDecimal.ZERO) <  0) return re + " - " + (im.negate()) + "i";
+        if (im.compareTo(BigDecimal.ZERO) < 0) return re + " - " + (im.negate()) + "i";
         return re + " + " + im + "i";
     }
 
@@ -98,18 +100,17 @@ public class ComplexBD extends AppCompatActivity {
     public ComplexBD reciprocal() {
         BigDecimal scale = (re.multiply(re)).add(im.multiply(im));
         // To prevent division by zero if no inputs (since initialised as zero)
-        if(scale == BigDecimal.ZERO)
+        if (scale == BigDecimal.ZERO)
             return new ComplexBD(BigDecimal.ZERO, BigDecimal.ZERO);
         else
-            return new ComplexBD((re.divide(scale, Integer.valueOf(VariablesSolver.loadDP())+1, RoundingMode.HALF_UP)), ((im.negate()).divide(scale, Integer.valueOf(VariablesSolver.loadDP())+1, RoundingMode.HALF_UP)));
+            return new ComplexBD((re.divide(scale, Integer.valueOf(VariablesSolver.loadDP()) + 1, RoundingMode.HALF_UP)), ((im.negate()).divide(scale, Integer.valueOf(VariablesSolver.loadDP()) + 1, RoundingMode.HALF_UP)));
     }
 
     // return a complex object whose value is the conjugate of this
-    public ComplexBD conjugate(){
+    public ComplexBD conjugate() {
         return new ComplexBD(re, im.negate());
     }
 
-    }
-
+}
 
 
