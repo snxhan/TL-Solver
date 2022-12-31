@@ -85,7 +85,7 @@ public class ComplexNumberMultiply extends AppCompatActivity{
             // Display results and step by step solution
             MathView mvComplexMultiplicationResults = findViewById(R.id.mvComplexBasicOperationsResults);
             mvComplexMultiplicationResults.setDisplayText("$" + a.times(b).toPString() + "$");
-            MathView mvComplexMultiplicationStepsBySteps = findViewById(R.id.mvRefCoeffStepsBySteps);
+            MathView mvComplexMultiplicationStepsBySteps = findViewById(R.id.mvRefCoeffStepsBySteps_1_1);
             String steps = "";
 //            steps += "<p>Step 1: Apply complex arithmetic rule:<br>$(a+bi)(c+di)$<br> $= (ac-bd)+(ad+bc)i$<br>";
 //            steps += "$=(" + a.re + " * " + b.re + " - " + a.im + " * " + b.im + ") + (" + a.re + " * " + b.im + " + " + a.im + " * " + b.re + ")i$</p>";

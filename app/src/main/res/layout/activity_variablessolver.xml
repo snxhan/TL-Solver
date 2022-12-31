@@ -563,54 +563,96 @@
 
                     <!-- katex.hourglass.in.mathlib.MathView -->
                     <katex.hourglass.in.mathlib.MathView
-                        android:id="@+id/mvRefCoeffStepsBySteps"
+                        android:id="@+id/mvRefCoeffStepsBySteps_1_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="aaaaaaaasdfasdfasdfa"
-                        app:layout_constraintBottom_toTopOf="@+id/tvExpand1_1"
+                        android:text="default_1"
                         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintHorizontal_bias="0"
                         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-                        app:layout_constraintTop_toBottomOf="@+id/divider1"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
-                    <!-- katex.hourglass.in.mathlib.MathView -->
                     <TextView
-                        android:id="@+id/tvExpand1_1"
+                        android:id="@+id/tvExpand2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Expand"
-                        app:layout_constraintBottom_toTopOf="@+id/mvRefCoeffStepsBySteps_1"
+                        android:text="Manual steps:"
+                        android:textColor="@color/primary"
+                        app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-                        app:layout_constraintHorizontal_bias="0.15"
                         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-                        app:layout_constraintTop_toBottomOf="@+id/mvRefCoeffStepsBySteps" />
+                        app:layout_constraintTop_toBottomOf="@+id/mvRefCoeffStepsBySteps_1_1" />
 
                     <ImageView
-                        android:id="@+id/show_1_1"
+                        android:id="@+id/show_1_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="4dp"
                         android:padding="4dp"
                         app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintLeft_toRightOf="@+id/tvExpand1_1"
+                        app:layout_constraintLeft_toRightOf="@+id/tvExpand2"
                         app:layout_constraintRight_toLeftOf="@id/guidelineRight"
-                        app:layout_constraintTop_toBottomOf="@+id/mvRefCoeffStepsBySteps"
+                        app:layout_constraintTop_toBottomOf="@+id/mvRefCoeffStepsBySteps_1_1"
                         app:srcCompat="@android:drawable/arrow_down_float"
                         app:tint="@color/primary" />
 
                     <!-- katex.hourglass.in.mathlib.MathView -->
                     <katex.hourglass.in.mathlib.MathView
-                        android:id="@+id/mvRefCoeffStepsBySteps_1"
+                        android:id="@+id/mvRefCoeffStepsBySteps_1_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="complex number expansion_2"
+                        app:layout_constraintTop_toBottomOf="@id/tvExpand2"
+                        app:layout_constraintLeft_toRightOf="@id/guidelineLeft"
+                        app:layout_constraintRight_toLeftOf="@id/guidelineRight"
+                        app:layout_constraintHorizontal_bias="0" />
+
+                    <!-- katex.hourglass.in.mathlib.MathView -->
+                    <katex.hourglass.in.mathlib.MathView
+                        android:id="@+id/mvRefCoeffStepsBySteps_1_1_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="aaaaaaaasdfasdfasdfa"
+                        android:text="default_1_1"
+                        app:layout_constraintTop_toBottomOf="@id/mvRefCoeffStepsBySteps_1_2"
+                        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+                        app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                        app:layout_constraintHorizontal_bias="0"/>
+
+                    <TextView
+                        android:id="@+id/tvExpand3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alternative answers:"
+                        android:textColor="@color/primary"
+                        app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                        app:layout_constraintTop_toBottomOf="@+id/mvRefCoeffStepsBySteps_1_1_1"
+                        app:layout_constraintBottom_toTopOf="@id/mvRefCoeffStepsBySteps_1_3"/>
+
+                    <ImageView
+                        android:id="@+id/show_1_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:padding="4dp"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintLeft_toRightOf="@+id/tvExpand3"
+                        app:layout_constraintRight_toLeftOf="@id/guidelineRight"
+                        app:layout_constraintTop_toBottomOf="@+id/mvRefCoeffStepsBySteps_1_1_1"
+                        app:srcCompat="@android:drawable/arrow_down_float"
+                        app:tint="@color/primary" />
+
+                    <!-- katex.hourglass.in.mathlib.MathView -->
+                    <katex.hourglass.in.mathlib.MathView
+                        android:id="@+id/mvRefCoeffStepsBySteps_1_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="alternative answers_3"
                         app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
                         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintHorizontal_bias="0"
                         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-                        app:layout_constraintTop_toBottomOf="@+id/tvExpand1_1"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintTop_toBottomOf="@+id/tvExpand3" />
 
 
                     <androidx.constraintlayout.widget.Group
@@ -618,15 +660,23 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:visibility="gone"
-                        app:constraint_referenced_ids="mvRefCoeffStepsBySteps,divider1,show_1_1"
+                        app:constraint_referenced_ids="mvRefCoeffStepsBySteps_1_1,divider1,tvExpand2,show_1_2,mvRefCoeffStepsBySteps_1_1_1,tvExpand3,show_1_3"
                         tools:visibility="visible" />
 
                     <androidx.constraintlayout.widget.Group
-                        android:id="@+id/card_group1_1"
+                        android:id="@+id/card_group1_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:visibility="gone"
-                        app:constraint_referenced_ids="mvRefCoeffStepsBySteps_1,show_1_1"
+                        app:constraint_referenced_ids="mvRefCoeffStepsBySteps_1_2"
+                        tools:visibility="visible" />
+
+                    <androidx.constraintlayout.widget.Group
+                        android:id="@+id/card_group1_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:constraint_referenced_ids="mvRefCoeffStepsBySteps_1_3"
                         tools:visibility="visible" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

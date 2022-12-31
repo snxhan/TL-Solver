@@ -310,7 +310,7 @@
 
                     <!-- katex.hourglass.in.mathlib.MathView -->
                     <katex.hourglass.in.mathlib.MathView
-                        android:id="@+id/mvRefCoeffStepsBySteps"
+                        android:id="@+id/mvRefCoeffStepsBySteps_1_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
@@ -327,7 +327,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:visibility="gone"
-                        app:constraint_referenced_ids="mvRefCoeffStepsBySteps,divider1"
+                        app:constraint_referenced_ids="mvRefCoeffStepsBySteps_1_1,divider1"
 
                         tools:visibility="visible" />
                 </androidx.constraintlayout.widget.ConstraintLayout>

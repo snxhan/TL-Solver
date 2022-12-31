@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,8 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,11 +24,9 @@ import androidx.core.content.ContextCompat;
 import androidx.transition.AutoTransition;
 import androidx.transition.TransitionManager;
 
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 import hourglass.github.in.katex.Complex;
-import hourglass.github.in.katex.ComplexBD;
 import hourglass.github.in.katex.R;
 import katex.hourglass.in.mathlib.MathView;
 
@@ -99,20 +93,27 @@ public class VariablesSolver extends AppCompatActivity {
 
             // ==================================================================================================== //
             // FORMULA 1: COMPUTING REFLECTION COEFFICIENT (requires: Zl & Z0)
+            // Step-by-step solution:
+            // 1.1   : Default
+            // 1.2   : Expansion of Complex Number
+            // 1.1.1 : Default (Continuation)
+            // 1.3   : Alternative Answers
             // ==================================================================================================== //
 
-            // Take value from inputs and insert to new Complex Object
+            // Take value from inputs and create new Complex Object
             Complex complex_zl = new Complex (zl_re, zl_im);
             Complex complex_z0 = new Complex (z0, 0); // put in zero for no imaginary parts
 
             // Init variables
             MathView refCoeff_outputs_results = findViewById(R.id.refCoeff_outputs_results);
-            MathView mvRefCoeffStepsBySteps = findViewById(R.id.mvRefCoeffStepsBySteps);
-            MathView mvRefCoeffStepsBySteps_1 = findViewById(R.id.mvRefCoeffStepsBySteps_1);
+            MathView mvRefCoeffStepsBySteps_1_1 = findViewById(R.id.mvRefCoeffStepsBySteps_1_1);
+            MathView mvRefCoeffStepsBySteps_1_2 = findViewById(R.id.mvRefCoeffStepsBySteps_1_2);
+            MathView mvRefCoeffStepsBySteps_1_1_1 = findViewById(R.id.mvRefCoeffStepsBySteps_1_1_1);
+            MathView mvRefCoeffStepsBySteps_1_3 = findViewById(R.id.mvRefCoeffStepsBySteps_1_3);
 
             // Get answer and set results
             String refCoeff_answer = (complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).toString();
-            refCoeff_outputs_results.setDisplayText(refCoeff_answer);
+            refCoeff_outputs_results.setDisplayText("$" + refCoeff_answer + "$");
 
             // Track zl imaginary sign and put in imaginary sign
             String new_zl_im = "";
@@ -122,28 +123,44 @@ public class VariablesSolver extends AppCompatActivity {
                 new_zl_im = "+" + zl_im + "i"; // if positive then add positive sign
 
             // Get Step-by-step solution and set solution
-            String steps_refCoeff = "";
-            steps_refCoeff += "Step 1: Recall $\\Gamma$ (Gamma) formula:<br><span style='color:red;'>$\\Gamma = \\frac{\\Zeta_L -\\Zeta_0}{\\Zeta_L +\\Zeta_0}$</span><br><br>";
-            steps_refCoeff += "Step 2: Compute with given variables:<br>";
-            steps_refCoeff += "$\\Gamma =\\frac{(" + df.format(zl_re) + (new_zl_im) + ")-(" + df.format(z0) + ")}{(" + zl_re + new_zl_im + ")+(" + df.format(z0) + ")}$<br><br>";
-            steps_refCoeff += "Step 3: Group real parts and imaginary parts and simplify: <br> <span style='color:red;'>Compute using calculator or expand to view detailed steps</span><br> ";
-            steps_refCoeff += "$\\Gamma =\\frac{(" + (zl_re - z0) + ")+(" + (new_zl_im) + ")}{(" + (zl_re + z0) + ")+(" + new_zl_im + ")}$<br><br>";
-            steps_refCoeff += "Sub-step 3a: Multiply by the conjugate: <br>";
-            steps_refCoeff += "$\\Gamma =\\frac{(" + (zl_re - z0) + ")+(" + new_zl_im + ")}{(" + (zl_re - z0) + ")+(" + new_zl_im + ")} \\times \\frac{(" + (zl_re + z0) + ")-(" + new_zl_im + ")}{(" + (zl_re + z0) + ")-(" + new_zl_im + ")}$<br><br>";
-            steps_refCoeff += "Sub-step 3b: Group real parts and imaginary parts and simplify: <br>";
+            // Formula 1 : Default
+            String steps_refCoeff_1_1 = "";
+            steps_refCoeff_1_1 += "Step 1: Recall $\\Gamma$ (Gamma) formula:<br><span style='color:red;'>$\\Gamma = \\frac{\\Zeta_L -\\Zeta_0}{\\Zeta_L +\\Zeta_0}$</span><br><br>";
+            steps_refCoeff_1_1 += "Step 2: Substitute with given inputs:<br>";
+            steps_refCoeff_1_1 += "$\\Gamma =\\frac{(" + df.format(zl_re) + (new_zl_im) + ")-(" + df.format(z0) + ")}{(" + zl_re + new_zl_im + ")+(" + df.format(z0) + ")}$<br><br>";
+            steps_refCoeff_1_1 += "Step 3: Group real parts and imaginary parts and simplify: <br> <span style='color:red;'><i>*Compute using calculator</i></span><br> ";
+            steps_refCoeff_1_1 += "$\\Gamma =\\frac{(" + (zl_re - z0) + ")+(" + (new_zl_im) + ")}{(" + (zl_re + z0) + ")+(" + new_zl_im + ")}$<br>";
+
+            // Formula 2: Expansion of Complex Number
+            String steps_refCoeff_1_2 = "";
+            steps_refCoeff_1_2 += "Sub-step 3a: Multiply by the conjugate: <br>";
+            steps_refCoeff_1_2 += "$\\Gamma =\\frac{(" + (zl_re - z0) + ")+(" + new_zl_im + ")}{(" + (zl_re - z0) + ")+(" + new_zl_im + ")} \\times \\frac{(" + (zl_re + z0) + ")-(" + new_zl_im + ")}{(" + (zl_re + z0) + ")-(" + new_zl_im + ")}$<br><br>";
+            steps_refCoeff_1_2 += "Sub-step 3b: Group real parts and imaginary parts and simplify: <br>";
             // new alpha and beta for complex object and conveniently get conjugate
             Complex refCoeff_Steps_a_top = new Complex((zl_re - z0), zl_im);
             Complex refCoeff_Steps_a_bottom = new Complex((zl_re+ z0), zl_im);
-            steps_refCoeff += "$\\Gamma =\\frac{(" + refCoeff_Steps_a_top.times(refCoeff_Steps_a_bottom.conjugate()) + ")}{(" + refCoeff_Steps_a_bottom.times(refCoeff_Steps_a_bottom.conjugate()) + ")}$<br><br>";
-            steps_refCoeff += "Step 4: Answer:<br>";
-            steps_refCoeff += "$" + refCoeff_answer + "$<br><br>";
-            String steps_refCoeff_1 = "";
-            steps_refCoeff_1 += "Or (in Polar form)<br>";
-            steps_refCoeff_1 += "$" + (complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).abs() + "\\angle" + (complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).phase() + "\\text{ rad}$ <br>";
-            steps_refCoeff_1 += "$" + (complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).abs() + "\\angle" + (complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).phaseDeg() + "\\degree$";
-            mvRefCoeffStepsBySteps.setDisplayText(steps_refCoeff);
-            mvRefCoeffStepsBySteps_1.setDisplayText(steps_refCoeff_1);
-//            mvRefCoeffStepsBySteps_1.setViewBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
+            steps_refCoeff_1_2 += "$\\Gamma =\\frac{(" + refCoeff_Steps_a_top.times(refCoeff_Steps_a_bottom.conjugate()) + ")}{(" + refCoeff_Steps_a_bottom.times(refCoeff_Steps_a_bottom.conjugate()) + ")}$<br>";
+
+            // Formula 1.1: Default (Continuation)
+            String steps_refCoeff_1_1_1 = "";
+            steps_refCoeff_1_1_1 += "<br>Step 4: Answer:<br>";
+            steps_refCoeff_1_1_1 += "$" + refCoeff_answer + "$<br>";
+
+            // Formula 3: Alternative Answers
+            String steps_refCoeff_1_3 = "";
+            steps_refCoeff_1_3 += "Answer in Polar form<br>";
+            steps_refCoeff_1_3 += "$" + (complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).abs() + "\\angle" + (complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).phase() + "\\text{ rad}$ <br>";
+            steps_refCoeff_1_3 += "$" + (complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).abs() + "\\angle" + (complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).phaseDeg() + "\\degree$";
+
+            // Set 1, 1.1, 1.2 step-by-step solution to Front-end
+            mvRefCoeffStepsBySteps_1_1.setDisplayText(steps_refCoeff_1_1);
+            mvRefCoeffStepsBySteps_1_2.setDisplayText(steps_refCoeff_1_2);
+            mvRefCoeffStepsBySteps_1_1_1.setDisplayText(steps_refCoeff_1_1_1);
+            mvRefCoeffStepsBySteps_1_3.setDisplayText(steps_refCoeff_1_3);
+
+            // apply background colour to sub-expansions
+            mvRefCoeffStepsBySteps_1_2.setViewBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
+            mvRefCoeffStepsBySteps_1_3.setViewBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
 
             // Example of setting background colour
             // mvRefCoeffStepsBySteps.setViewBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.Color5));
@@ -222,18 +239,33 @@ public class VariablesSolver extends AppCompatActivity {
                 }, 100);
             }
         });
-        // FORMULA 1.1 (Sub expansion)
-        Group hiddenGroup1_1 = findViewById(R.id.card_group1_1);
-        ImageView arrow1_1 = findViewById(R.id.show_1_1);
-        arrow1_1.setOnClickListener(view -> {
-            if (hiddenGroup1_1.getVisibility() == View.VISIBLE) {
+        // FORMULA 1.2 (Expansion of Complex Number)
+        Group hiddenGroup1_2 = findViewById(R.id.card_group1_2);
+        ImageView arrow1_2 = findViewById(R.id.show_1_2);
+        arrow1_2.setOnClickListener(view -> {
+            if (hiddenGroup1_2.getVisibility() == View.VISIBLE) {
                 TransitionManager.beginDelayedTransition(cardView1, new AutoTransition());
-                hiddenGroup1_1.setVisibility(View.GONE);
-                arrow1_1.setImageResource(android.R.drawable.arrow_down_float);
+                hiddenGroup1_2.setVisibility(View.GONE);
+                arrow1_2.setImageResource(android.R.drawable.arrow_down_float);
             } else {
                 TransitionManager.beginDelayedTransition(cardView1, new AutoTransition());
-                hiddenGroup1_1.setVisibility(View.VISIBLE);
-                arrow1_1.setImageResource(android.R.drawable.arrow_up_float);
+                hiddenGroup1_2.setVisibility(View.VISIBLE);
+                arrow1_2.setImageResource(android.R.drawable.arrow_up_float);
+
+            }
+        });
+        // FORMULA 1.3 (Alternative Answer)
+        Group hiddenGroup1_3 = findViewById(R.id.card_group1_3);
+        ImageView arrow1_3 = findViewById(R.id.show_1_3);
+        arrow1_3.setOnClickListener(view -> {
+            if (hiddenGroup1_3.getVisibility() == View.VISIBLE) {
+                TransitionManager.beginDelayedTransition(cardView1, new AutoTransition());
+                hiddenGroup1_3.setVisibility(View.GONE);
+                arrow1_3.setImageResource(android.R.drawable.arrow_down_float);
+            } else {
+                TransitionManager.beginDelayedTransition(cardView1, new AutoTransition());
+                hiddenGroup1_3.setVisibility(View.VISIBLE);
+                arrow1_3.setImageResource(android.R.drawable.arrow_up_float);
 
             }
         });

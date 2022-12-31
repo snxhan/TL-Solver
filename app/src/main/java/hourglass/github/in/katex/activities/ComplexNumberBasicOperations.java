@@ -82,7 +82,7 @@ public class ComplexNumberBasicOperations extends AppCompatActivity {
             // Display results and step by step solution
             MathView mvComplexMultiplicationResults = findViewById(R.id.mvComplexBasicOperationsResults);
             mvComplexMultiplicationResults.setDisplayText("$" + a.plus(b).toPString() + "$");
-            MathView mvComplexMultiplicationStepsBySteps = findViewById(R.id.mvRefCoeffStepsBySteps);
+            MathView mvComplexMultiplicationStepsBySteps = findViewById(R.id.mvRefCoeffStepsBySteps_1_1);
             String steps = "";
 
             steps += "Step 1: Group real part and imaginary part of complex number:<br><span style='color:red;'>$(a+bi)+(c+di)$</span><br> $= (a+c)+(b+d)i$<br>";
@@ -129,7 +129,7 @@ public class ComplexNumberBasicOperations extends AppCompatActivity {
             // Display results and step by step solution
             MathView mvComplexMultiplicationResults = findViewById(R.id.mvComplexBasicOperationsResults);
             mvComplexMultiplicationResults.setDisplayText("$" + a.minus(b).toPString() + "$");
-            MathView mvComplexMultiplicationStepsBySteps = findViewById(R.id.mvRefCoeffStepsBySteps);
+            MathView mvComplexMultiplicationStepsBySteps = findViewById(R.id.mvRefCoeffStepsBySteps_1_1);
             String steps = "";
 
             steps += "Step 1: Group real part and imaginary part of complex number:<br><span style='color:red;'>$(a+bi)-(c+di)$</span><br> $= (a-c)+(b-d)i$<br>";
@@ -176,7 +176,7 @@ public class ComplexNumberBasicOperations extends AppCompatActivity {
             // Display results and step by step solution
             MathView mvComplexMultiplicationResults = findViewById(R.id.mvComplexBasicOperationsResults);
             mvComplexMultiplicationResults.setDisplayText("$" + a.times(b).toPString() + "$");
-            MathView mvComplexMultiplicationStepsBySteps = findViewById(R.id.mvRefCoeffStepsBySteps);
+            MathView mvComplexMultiplicationStepsBySteps = findViewById(R.id.mvRefCoeffStepsBySteps_1_1);
             String steps = "";
 //            steps += "<p>Step 1: Apply complex arithmetic rule:<br>$(a+bi)(c+di)$<br> $= (ac-bd)+(ad+bc)i$<br>";
 //            steps += "$=(" + a.re + " * " + b.re + " - " + a.im + " * " + b.im + ") + (" + a.re + " * " + b.im + " + " + a.im + " * " + b.re + ")i$</p>";
@@ -233,7 +233,7 @@ public class ComplexNumberBasicOperations extends AppCompatActivity {
             // Display results and step by step solution
             MathView mvComplexMultiplicationResults = findViewById(R.id.mvComplexBasicOperationsResults);
             mvComplexMultiplicationResults.setDisplayText("$" + a.div(b).toPString() + "$");
-            MathView mvComplexMultiplicationStepsBySteps = findViewById(R.id.mvRefCoeffStepsBySteps);
+            MathView mvComplexMultiplicationStepsBySteps = findViewById(R.id.mvRefCoeffStepsBySteps_1_1);
             String steps = "";
 
             // Track a.im and b.im imaginary sign and put in imaginary sign if positive
