@@ -11,8 +11,8 @@
         android:title="Compute basic operations (+/-/x/div)"
         app:showAsAction="never"></item>
     <item
-        android:id="@+id/complexNumber_multiply"
+        android:id="@+id/complexNumber_polarForm"
         app:showAsAction="never"
-        android:title="Multiply 2 Complex Numbers">
+        android:title="Complex number in Polar form">
     </item>
 </menu>

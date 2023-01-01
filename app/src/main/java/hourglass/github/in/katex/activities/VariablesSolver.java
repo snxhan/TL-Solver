@@ -32,14 +32,14 @@ import katex.hourglass.in.mathlib.MathView;
 
 public class VariablesSolver extends AppCompatActivity {
 
-    static SharedPreferences sharedPreferences;
+//    static SharedPreferences sharedPreferences;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_variablessolver);
         //shared prefs
-        sharedPreferences = getSharedPreferences("appSettings", Context.MODE_PRIVATE);
+//        sharedPreferences = getSharedPreferences("appSettings", Context.MODE_PRIVATE);
 
         // Toolbar and Title
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -53,7 +53,7 @@ public class VariablesSolver extends AppCompatActivity {
 
         EditText etZl_re_inputs = findViewById(R.id.etZl_re_inputs);
         EditText etZl_im_inputs = findViewById(R.id.etZl_im_inputs);
-        EditText etCharImp_inputs = findViewById(R.id.etCharImp_inputs);
+        EditText etZ0_inputs = findViewById(R.id.etZ0_inputs);
         EditText etVg_re_inputs = findViewById(R.id.vg_inputs_re);
         EditText etVg_im_inputs = findViewById(R.id.vg_inputs_im);
         EditText etZg_re_inputs = findViewById(R.id.zg_inputs_re);
@@ -75,8 +75,8 @@ public class VariablesSolver extends AppCompatActivity {
                 zl_re = Double.parseDouble(String.valueOf(etZl_re_inputs.getText()));
             if (etZl_im_inputs.getText().toString().trim().length() != 0)
                 zl_im = Double.parseDouble(String.valueOf(etZl_im_inputs.getText()));
-            if (etCharImp_inputs.getText().toString().trim().length() != 0)
-                z0 = Double.parseDouble(String.valueOf(etCharImp_inputs.getText()));
+            if (etZ0_inputs.getText().toString().trim().length() != 0)
+                z0 = Double.parseDouble(String.valueOf(etZ0_inputs.getText()));
 
             if (etVg_re_inputs.getText().toString().trim().length() != 0)
                 vg_re = Double.parseDouble(String.valueOf(etVg_re_inputs.getText()));
@@ -123,7 +123,7 @@ public class VariablesSolver extends AppCompatActivity {
                 new_zl_im = "+" + zl_im + "i"; // if positive then add positive sign
 
             // Get Step-by-step solution and set solution
-            // Formula 1 : Default
+            // Formula 1.1 : Default
             String steps_refCoeff_1_1 = "";
             steps_refCoeff_1_1 += "Step 1: Recall $\\Gamma$ (Gamma) formula:<br><span style='color:red;'>$\\Gamma = \\frac{\\Zeta_L -\\Zeta_0}{\\Zeta_L +\\Zeta_0}$</span><br><br>";
             steps_refCoeff_1_1 += "Step 2: Substitute with given inputs:<br>";
@@ -131,7 +131,7 @@ public class VariablesSolver extends AppCompatActivity {
             steps_refCoeff_1_1 += "Step 3: Group real parts and imaginary parts and simplify: <br> <span style='color:red;'><i>*Compute using calculator</i></span><br> ";
             steps_refCoeff_1_1 += "$\\Gamma =\\frac{(" + (zl_re - z0) + ")+(" + (new_zl_im) + ")}{(" + (zl_re + z0) + ")+(" + new_zl_im + ")}$<br>";
 
-            // Formula 2: Expansion of Complex Number
+            // Formula 1.2: Expansion of Complex Number
             String steps_refCoeff_1_2 = "";
             steps_refCoeff_1_2 += "Sub-step 3a: Multiply by the conjugate: <br>";
             steps_refCoeff_1_2 += "$\\Gamma =\\frac{(" + (zl_re - z0) + ")+(" + new_zl_im + ")}{(" + (zl_re - z0) + ")+(" + new_zl_im + ")} \\times \\frac{(" + (zl_re + z0) + ")-(" + new_zl_im + ")}{(" + (zl_re + z0) + ")-(" + new_zl_im + ")}$<br><br>";
@@ -141,12 +141,12 @@ public class VariablesSolver extends AppCompatActivity {
             Complex refCoeff_Steps_a_bottom = new Complex((zl_re+ z0), zl_im);
             steps_refCoeff_1_2 += "$\\Gamma =\\frac{(" + refCoeff_Steps_a_top.times(refCoeff_Steps_a_bottom.conjugate()) + ")}{(" + refCoeff_Steps_a_bottom.times(refCoeff_Steps_a_bottom.conjugate()) + ")}$<br>";
 
-            // Formula 1.1: Default (Continuation)
+            // Formula 1.1.1: Default (Continuation)
             String steps_refCoeff_1_1_1 = "";
             steps_refCoeff_1_1_1 += "<br>Step 4: Answer:<br>";
             steps_refCoeff_1_1_1 += "$" + refCoeff_answer + "$<br>";
 
-            // Formula 3: Alternative Answers
+            // Formula 1.3: Alternative Answers
             String steps_refCoeff_1_3 = "";
             steps_refCoeff_1_3 += "Answer in Polar form<br>";
             steps_refCoeff_1_3 += "$" + (complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).abs() + "\\angle" + (complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).phase() + "\\text{ rad}$ <br>";
@@ -207,7 +207,7 @@ public class VariablesSolver extends AppCompatActivity {
         });
         // When test button has been pressed, load default inputs
         buttonTest.setOnClickListener(V -> {
-            etCharImp_inputs.setText(String.valueOf(75)); //z0
+            etZ0_inputs.setText(String.valueOf(75)); //z0
             etZl_re_inputs.setText(String.valueOf(60));
             etZl_im_inputs.setText(String.valueOf(-40));
             etVg_re_inputs.setText(String.valueOf(15));
@@ -293,16 +293,16 @@ public class VariablesSolver extends AppCompatActivity {
         });
     }
 
-    public static void saveDP(String new_dp) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("dp", new_dp);
-        editor.apply();
-    }
-
-    public static String loadDP() {
-        // 3 as default
-        return sharedPreferences.getString("dp", "3");
-    }
+//    public static void saveDP(String new_dp) {
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.putString("dp", new_dp);
+//        editor.apply();
+//    }
+//
+//    public static String loadDP() {
+//        // 3 as default
+//        return sharedPreferences.getString("dp", "3");
+//    }
 
     // Back button
     public boolean onOptionsItemSelected(MenuItem item) {

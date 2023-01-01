@@ -88,57 +88,16 @@
                 app:layout_constraintStart_toEndOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="2: "
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-            <EditText
-                android:id="@+id/etBetaRe"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Re"
-                android:inputType="text"
-                android:minHeight="48dp"
-                app:layout_constraintStart_toEndOf="@+id/textView5"
-                app:layout_constraintTop_toBottomOf="@+id/etAlphaRe" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text=" + j "
-                android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@+id/etBetaRe"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-            <EditText
-                android:id="@+id/etBetaIm"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Im"
-                android:inputType="text"
-                android:minHeight="48dp"
-                app:layout_constraintStart_toEndOf="@+id/textView6"
-                app:layout_constraintTop_toBottomOf="@+id/etAlphaIm" />
-
             <Button
-                android:id="@+id/buttonMultiply"
+                android:id="@+id/buttonConvert"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Multiply"
+                android:text="Convert"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etAlphaIm"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etBetaIm" />
+                tools:layout_editor_absoluteY="182dp" />
 
             <TextView
                 android:id="@+id/tvOutputHeader"
@@ -153,7 +112,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/buttonMultiply" />
+                app:layout_constraintTop_toBottomOf="@+id/buttonConvert" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/base_cardview"
@@ -229,9 +188,10 @@
                         app:layout_constraintStart_toEndOf="@+id/imageView2"
                         app:layout_constraintTop_toTopOf="@+id/imageView2"
                         app:layout_constraintVertical_bias="0.5" />
-                    <!--            katex.hourglass.in.mathlib.MathView-->
+
+                    <!-- katex.hourglass.in.mathlib.MathView -->
                     <katex.hourglass.in.mathlib.MathView
-                        android:id="@+id/mvComplexBasicOperationsResults"
+                        android:id="@+id/mvComplexConversionResults"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="80dp"
@@ -266,17 +226,15 @@
                         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
                         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
-                    <!--katex.hourglass.in.mathlib.MathView-->
+                    <!-- katex.hourglass.in.mathlib.MathView -->
                     <katex.hourglass.in.mathlib.MathView
-                        android:id="@+id/mvRefCoeffStepsBySteps_1_1"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/mvSBSComplexNumberToPolarForm"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="aaaaaaaasdfasdfasdfa"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:text="mvSBSComplexNumberToPolarForm"
                         app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
                         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintHorizontal_bias="0"
                         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
                         app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
@@ -285,7 +243,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:visibility="gone"
-                        app:constraint_referenced_ids="mvRefCoeffStepsBySteps_1_1,divider1"
+                        app:constraint_referenced_ids="mvSBSComplexNumberToPolarForm,divider1"
 
                         tools:visibility="visible" />
 

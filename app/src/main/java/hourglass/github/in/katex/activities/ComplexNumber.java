@@ -22,6 +22,15 @@ public class ComplexNumber extends AppCompatActivity {
         // Back button in toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
+    // Menu button in toolbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.complexnumber_menu, menu);
+        return true;
+    }
+
     // Back button direct back to MainActivity
     public boolean onOptionsItemSelected(MenuItem item){
 //        Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
@@ -40,8 +49,8 @@ public class ComplexNumber extends AppCompatActivity {
                 Intent c = new Intent(this, ComplexNumberBasicOperations.class);
                 this.startActivity(c);
                 return true;
-            case R.id.complexNumber_multiply:
-                Intent d = new Intent(this,ComplexNumberMultiply.class);
+            case R.id.complexNumber_polarForm:
+                Intent d = new Intent(this, ComplexNumberPolarForm.class);
                 this.startActivity(d);
                 return true;
             default:
@@ -49,11 +58,5 @@ public class ComplexNumber extends AppCompatActivity {
         }
 
     }
-    // Menu button in toolbar
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.complexnumber_menu, menu);
-        return true;
-    }
+
 }

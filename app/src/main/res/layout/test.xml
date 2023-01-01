@@ -137,7 +137,7 @@
                 tools:layout_editor_absoluteY="158dp" />
 
             <EditText
-                android:id="@+id/etCharImp_inputs"
+                android:id="@+id/etZ0_inputs"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -158,7 +158,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.266"
                 app:layout_constraintStart_toStartOf="@+id/verticalGuideline_inputs"
-                app:layout_constraintTop_toBottomOf="@+id/etCharImp_inputs" />
+                app:layout_constraintTop_toBottomOf="@+id/etZ0_inputs" />
 
             <EditText
                 android:id="@+id/etLineLen_inputs"

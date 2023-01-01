@@ -3,21 +3,13 @@ package hourglass.github.in.katex.dialogs;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import hourglass.github.in.katex.R;
 import hourglass.github.in.katex.activities.MainActivity;
-import hourglass.github.in.katex.activities.VariablesSolverSettings;
 
-public class VariablesSolverSettingsDialog extends DialogFragment {
+public class MainActivitySettingsDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 

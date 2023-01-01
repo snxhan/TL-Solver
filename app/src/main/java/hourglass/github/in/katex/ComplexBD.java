@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 
+import hourglass.github.in.katex.activities.MainActivity;
 import hourglass.github.in.katex.activities.VariablesSolver;
 import hourglass.github.in.katex.dialogs.VariablesSolverSettingsDialog;
 
@@ -103,7 +104,7 @@ public class ComplexBD extends AppCompatActivity {
         if (scale == BigDecimal.ZERO)
             return new ComplexBD(BigDecimal.ZERO, BigDecimal.ZERO);
         else
-            return new ComplexBD((re.divide(scale, Integer.valueOf(VariablesSolver.loadDP()) + 1, RoundingMode.HALF_UP)), ((im.negate()).divide(scale, Integer.valueOf(VariablesSolver.loadDP()) + 1, RoundingMode.HALF_UP)));
+            return new ComplexBD((re.divide(scale, Integer.valueOf(MainActivity.loadDP()) + 1, RoundingMode.HALF_UP)), ((im.negate()).divide(scale, Integer.valueOf(MainActivity.loadDP()) + 1, RoundingMode.HALF_UP)));
     }
 
     // return a complex object whose value is the conjugate of this

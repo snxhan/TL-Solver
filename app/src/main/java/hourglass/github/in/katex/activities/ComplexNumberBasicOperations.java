@@ -80,7 +80,7 @@ public class ComplexNumberBasicOperations extends AppCompatActivity {
 //            parent_layout.addView(mathView);
 
             // Display results and step by step solution
-            MathView mvComplexMultiplicationResults = findViewById(R.id.mvComplexBasicOperationsResults);
+            MathView mvComplexMultiplicationResults = findViewById(R.id.mvComplexConversionResults);
             mvComplexMultiplicationResults.setDisplayText("$" + a.plus(b).toPString() + "$");
             MathView mvComplexMultiplicationStepsBySteps = findViewById(R.id.mvRefCoeffStepsBySteps_1_1);
             String steps = "";
@@ -127,7 +127,7 @@ public class ComplexNumberBasicOperations extends AppCompatActivity {
 //            parent_layout.addView(mathView);
 
             // Display results and step by step solution
-            MathView mvComplexMultiplicationResults = findViewById(R.id.mvComplexBasicOperationsResults);
+            MathView mvComplexMultiplicationResults = findViewById(R.id.mvComplexConversionResults);
             mvComplexMultiplicationResults.setDisplayText("$" + a.minus(b).toPString() + "$");
             MathView mvComplexMultiplicationStepsBySteps = findViewById(R.id.mvRefCoeffStepsBySteps_1_1);
             String steps = "";
@@ -174,7 +174,7 @@ public class ComplexNumberBasicOperations extends AppCompatActivity {
 //            parent_layout.addView(mathView);
 
             // Display results and step by step solution
-            MathView mvComplexMultiplicationResults = findViewById(R.id.mvComplexBasicOperationsResults);
+            MathView mvComplexMultiplicationResults = findViewById(R.id.mvComplexConversionResults);
             mvComplexMultiplicationResults.setDisplayText("$" + a.times(b).toPString() + "$");
             MathView mvComplexMultiplicationStepsBySteps = findViewById(R.id.mvRefCoeffStepsBySteps_1_1);
             String steps = "";
@@ -231,7 +231,7 @@ public class ComplexNumberBasicOperations extends AppCompatActivity {
 //            parent_layout.addView(mathView);
 
             // Display results and step by step solution
-            MathView mvComplexMultiplicationResults = findViewById(R.id.mvComplexBasicOperationsResults);
+            MathView mvComplexMultiplicationResults = findViewById(R.id.mvComplexConversionResults);
             mvComplexMultiplicationResults.setDisplayText("$" + a.div(b).toPString() + "$");
             MathView mvComplexMultiplicationStepsBySteps = findViewById(R.id.mvRefCoeffStepsBySteps_1_1);
             String steps = "";

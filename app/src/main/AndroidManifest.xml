@@ -40,13 +40,16 @@
             android:name=".activities.ComplexNumberBasicOperations"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.ComplexNumberMultiply"
+            android:name=".activities.ComplexNumberPolarForm"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.VariablesSolver"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.VariablesSolverSettings"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.MainActivitySettings"
             android:screenOrientation="portrait" />
     </application>
 

@@ -7,17 +7,62 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import hourglass.github.in.katex.R;
 
 public class MainActivity extends AppCompatActivity {
     private String TAG = "MainActivity";
 
+    // Shared Preferences
+    static SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setInitialViews();;
+
+        // Shared Preferences
+        sharedPreferences = getSharedPreferences("appSettings", Context.MODE_PRIVATE);
+
+    }
+
+    // Menu button in toolbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mainactivity_menu, menu);
+        return true;
+    }
+
+    // Options Menu
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent a = new Intent(this,MainActivity.class);
+                this.startActivity(a);
+                return true;
+            case R.id.mainActivity_settings:
+                Intent b = new Intent(this,MainActivitySettings.class);
+                this.startActivity(b);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    // Shared Preferences - decimal places (dp)
+    public static void saveDP(String new_dp) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("dp", new_dp);
+        editor.apply();
+    }
+    // Shared Preferences - decimal places (dp)
+    public static String loadDP() {
+        // 3 as default
+        return sharedPreferences.getString("dp", "3");
     }
 
     private void setInitialViews() {

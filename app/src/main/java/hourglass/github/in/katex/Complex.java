@@ -26,7 +26,6 @@ package hourglass.github.in.katex;
 //        *  tan(a)       = -6.685231390246571E-6 + 1.0000103108981198i
 
 
-
 import android.util.Log;
 
 import java.math.BigDecimal;
@@ -35,6 +34,7 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.Objects;
 
+import hourglass.github.in.katex.activities.MainActivity;
 import hourglass.github.in.katex.activities.VariablesSolver;
 
 public class Complex {
@@ -44,31 +44,31 @@ public class Complex {
     // create a new object with the given real and imaginary parts
     public Complex(double real, double imag) {
         // set decimal places
-        re = Double.valueOf(String.format("%."+ (Integer.valueOf(VariablesSolver.loadDP())) + "f", real));
-        im = Double.valueOf(String.format("%."+ (Integer.valueOf(VariablesSolver.loadDP())) + "f", imag));
+        re = Double.parseDouble(String.format("%." + (Integer.valueOf(MainActivity.loadDP())) + "f", real));
+        im = Double.parseDouble(String.format("%." + (Integer.valueOf(MainActivity.loadDP())) + "f", imag));
     }
 
     // return a string representation of the invoking Complex object
     public String toString() {
         if (im == 0) return re + "";
         if (re == 0) return im + "i";
-        if (im <  0) return re + " - " + (-im) + "i";
+        if (im < 0) return re + " - " + (-im) + "i";
         return re + " + " + im + "i";
     }
 
     // return abs/modulus/magnitude
     public double abs() {
-        return Double.valueOf(String.format("%."+ (Integer.valueOf(VariablesSolver.loadDP())) + "f", Math.hypot(re, im)));
+        return Double.parseDouble(String.format("%." + (Integer.valueOf(MainActivity.loadDP())) + "f", Math.hypot(re, im)));
     }
 
     // return angle/phase/argument, normalized to be between -pi and pi
     public double phase() {
-        return Double.valueOf(String.format("%."+ (Integer.valueOf(VariablesSolver.loadDP())) + "f", Math.atan2(im, re)));
+        return Double.parseDouble(String.format("%." + (Integer.valueOf(MainActivity.loadDP())) + "f", Math.atan2(im, re)));
     }
 
     // return angle/phase/argument in DEGREES
     public double phaseDeg() {
-        double theta = Double.valueOf(String.format("%."+ (Integer.valueOf(VariablesSolver.loadDP())) + "f", Math.toDegrees(phase())));
+        double theta = Double.parseDouble(String.format("%." + (Integer.valueOf(MainActivity.loadDP())) + "f", Math.toDegrees(phase())));
 //        if(theta <0.0){
 //            theta += 360.0;
 //        }
@@ -111,13 +111,18 @@ public class Complex {
 
     // return a new Complex object whose value is the reciprocal of this
     public Complex reciprocal() {
-        double scale = re*re + im*im;
+        double scale = re * re + im * im;
         return new Complex(re / scale, -im / scale);
     }
 
     // return the real or imaginary part
-    public double re() { return re; }
-    public double im() { return im; }
+    public double re() {
+        return re;
+    }
+
+    public double im() {
+        return im;
+    }
 
     // return a / b
     public Complex divides(Complex b) {
