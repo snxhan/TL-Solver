@@ -38,8 +38,7 @@ public class ComplexNumber extends AppCompatActivity {
 //        return true;
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent a = new Intent(this,MainActivity.class);
-                this.startActivity(a);
+                finish();
                 return true;
             case R.id.complexNumber_add:
                 Intent b = new Intent(this,ComplexNumberAdd.class);

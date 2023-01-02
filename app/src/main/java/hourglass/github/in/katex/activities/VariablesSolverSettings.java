@@ -56,8 +56,9 @@ public class VariablesSolverSettings extends AppCompatActivity {
 //        return true;
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent a = new Intent(this,VariablesSolver.class);
-                this.startActivity(a);
+//                Intent a = new Intent(this,VariablesSolver.class);
+//                this.startActivity(a);
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

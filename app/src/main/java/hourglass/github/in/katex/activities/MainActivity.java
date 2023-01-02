@@ -65,6 +65,13 @@ public class MainActivity extends AppCompatActivity {
         return sharedPreferences.getString("dp", "3");
     }
 
+    // animation for back button pressed NOT USED
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+    }
+
     private void setInitialViews() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

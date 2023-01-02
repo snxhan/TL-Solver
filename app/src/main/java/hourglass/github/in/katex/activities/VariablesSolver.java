@@ -312,7 +312,7 @@ public class VariablesSolver extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 Intent a = new Intent(this, MainActivity.class);
-                this.startActivity(a);
+                finish();
                 return true;
             case R.id.variablesSolver_help:
                 Intent b = new Intent(this, ComplexNumberAdd.class);
@@ -334,4 +334,6 @@ public class VariablesSolver extends AppCompatActivity {
         inflater.inflate(R.menu.variablessolver_menu, menu);
         return true;
     }
+
+
 }

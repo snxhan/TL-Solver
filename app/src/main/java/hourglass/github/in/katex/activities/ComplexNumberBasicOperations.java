@@ -284,9 +284,18 @@ public class ComplexNumberBasicOperations extends AppCompatActivity {
         });
     }
     // Back button
-    public boolean onOptionsItemSelected(MenuItem item){
-        Intent myIntent = new Intent(getApplicationContext(), ComplexNumber.class);
-        startActivityForResult(myIntent, 0);
-        return true;
+    public boolean onOptionsItemSelected(MenuItem item) {
+//        Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+//        startActivityForResult(myIntent, 0);
+//        return true;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+//                Intent a = new Intent(this, MainActivity.class);
+//                this.startActivity(a);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

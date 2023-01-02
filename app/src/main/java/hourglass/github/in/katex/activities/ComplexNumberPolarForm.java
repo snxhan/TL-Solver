@@ -64,29 +64,31 @@ public class ComplexNumberPolarForm extends AppCompatActivity{
             if(etAlphaIm.getText().toString().trim().length() != 0)
                 alphaIm = Double.parseDouble(String.valueOf(etAlphaIm.getText()));
 
-            Complex complexNumber = new Complex(alphaRe, alphaIm);
+            Complex complexAlpha = new Complex(alphaRe, alphaIm);
 
-            MathView mathView = new MathView(getApplicationContext());
-            mathView.setClickable(true);
-            mathView.setTextSize(30);
-            mathView.setDisplayText("$\\alpha + \\beta = "+ complexNumber.abs() + "$ ");
-            mathView.setViewBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.Color5));
+//            MathView mathView = new MathView(getApplicationContext());
+//            mathView.setClickable(true);
+//            mathView.setTextSize(30);
+//            mathView.setDisplayText("$\\alpha + \\beta = "+ complexAlpha.abs() + "$ ");
+//            mathView.setViewBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.Color5));
 //            parent_layout.addView(mathView);
 
             // Display results and step by step solution
             MathView mvComplexConversionResults = findViewById(R.id.mvComplexConversionResults);
-            mvComplexConversionResults.setDisplayText("$h$");
+            mvComplexConversionResults.setDisplayText("$" + complexAlpha.abs() + "&nbsp;\\angle&nbsp;" + complexAlpha.phase() + "\\text{ rad}$");
             MathView mvSBSComplexNumberToPolarForm = findViewById(R.id.mvSBSComplexNumberToPolarForm);
 
             String steps = "";
-            steps += "Step 1: Apply complex arithmetic rule:<br><span style='color:red;'>$(a+bi)(c+di)$</span><br> $= (ac-bd)+(ad+bc)i$<br>";
-//            steps += "$=(" + a.re + " * " + b.re + " - " + a.im + " * " + b.im + ") + (" + a.re + " * " + b.im + " + " + a.im + " * " + b.re + ")i$<br><br>";
-            steps += "Step 2: Expand:<br>";
-//            steps += "$(" + a.re.multiply(b.re) + " - " + a.im.multiply(b.im) + ") + (" + a.re.multiply(b.im) + " + " + a.im.multiply(b.re) + ")i$<br><br>" ;
-            steps += "Step 3: Simplify:<br>";
-//            steps += "$(" + (a.re.multiply(b.re)).subtract(a.im.multiply(b.im)) + ") + (" + (a.re.multiply(b.im)).add(a.im.multiply(b.re)) + ")i$<br><br>" ;
-            steps += "Step 4: Answer:<br>";
-//            steps += "$" + (a.times(b)).toPString() + "$" ;
+            steps += "<b>Step 1: To convert Complex Number $z$ to Polar Form $r \\angle\\theta$ recall that: </b><br>" +
+                    "<span style='color:red;'>$(z = x+iy) = (r\\angle\\theta) $</span><br><br>" +
+                    "To find $r$; which is the Modulus of $z$,<br><span style='color:red;'>$r$</span> $= \\vert z\\vert = $<span style='color:red;'>$&nbsp;\\sqrt{x^2+y^2}$</span><br>" +
+                    "To find $\\theta;$ which is the Argument of $z$, <br><span style='color:red;'>$\\theta$</span> $= \\arg(z) =$<span style='color:red;'>$&nbsp;\\tan^{-1} \\frac{y}{x}$</span><br><br>";
+            steps += "<b>Step 2: Solve for $r$ and $\\theta$ :</b><br>" +
+                    "$r = \\sqrt{" + alphaRe + "^2 + " + alphaIm + "^2} =$ <span style='color:green;'>$" + complexAlpha.abs() + "$</span> <br>" +
+                    "$\\theta = \\tan^{-1} \\frac{" + alphaIm + "}{"  + alphaRe + "} = $ <span style='color:green;'>$" + complexAlpha.phase() + "$</span>$\\text{ rad}$<br>" +
+                    "$\\theta = \\tan^{-1} \\frac{" + alphaIm + "}{"  + alphaRe + "} = $ <span style='color:green;'>$" + complexAlpha.phaseDeg() + "$</span>$\\degree$<br><br>";
+            steps += "<b>Step 3: Answer:</b><br>" +
+                    "$" + complexAlpha.abs() + "&nbsp;\\angle&nbsp;" + complexAlpha.phase() + "\\text{ rad}$<br>";
 
 //            mvComplexMultiplicationStepsBySteps.setViewBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.Color5));
             mvSBSComplexNumberToPolarForm.setDisplayText(steps);
@@ -111,9 +113,18 @@ public class ComplexNumberPolarForm extends AppCompatActivity{
         });
     }
     // Back button
-    public boolean onOptionsItemSelected(MenuItem item){
-        Intent myIntent = new Intent(getApplicationContext(), ComplexNumber.class);
-        startActivityForResult(myIntent, 0);
-        return true;
+    public boolean onOptionsItemSelected(MenuItem item) {
+//        Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+//        startActivityForResult(myIntent, 0);
+//        return true;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+//                Intent a = new Intent(this, MainActivity.class);
+//                this.startActivity(a);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
