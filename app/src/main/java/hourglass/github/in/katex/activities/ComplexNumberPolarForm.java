@@ -1,13 +1,9 @@
 package hourglass.github.in.katex.activities;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.Group;
-import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.transition.AutoTransition;
@@ -21,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import hourglass.github.in.katex.Complex;
+import hourglass.github.in.katex.Formulas;
 import hourglass.github.in.katex.R;
 import katex.hourglass.in.mathlib.MathView;
 
@@ -79,16 +76,7 @@ public class ComplexNumberPolarForm extends AppCompatActivity{
             MathView mvSBSComplexNumberToPolarForm = findViewById(R.id.mvSBSComplexNumberToPolarForm);
 
             String steps = "";
-            steps += "<b>Step 1: To convert Complex Number $z$ to Polar Form $r \\angle\\theta$ recall that: </b><br>" +
-                    "<span style='color:red;'>$(z = x+iy) = (r\\angle\\theta) $</span><br><br>" +
-                    "To find $r$; which is the Modulus of $z$,<br><span style='color:red;'>$r$</span> $= \\vert z\\vert = $<span style='color:red;'>$&nbsp;\\sqrt{x^2+y^2}$</span><br>" +
-                    "To find $\\theta;$ which is the Argument of $z$, <br><span style='color:red;'>$\\theta$</span> $= \\arg(z) =$<span style='color:red;'>$&nbsp;\\tan^{-1} \\frac{y}{x}$</span><br><br>";
-            steps += "<b>Step 2: Solve for $r$ and $\\theta$ :</b><br>" +
-                    "$r = \\sqrt{" + alphaRe + "^2 + " + alphaIm + "^2} =$ <span style='color:green;'>$" + complexAlpha.abs() + "$</span> <br>" +
-                    "$\\theta = \\tan^{-1} \\frac{" + alphaIm + "}{"  + alphaRe + "} = $ <span style='color:green;'>$" + complexAlpha.phase() + "$</span>$\\text{ rad}$<br>" +
-                    "$\\theta = \\tan^{-1} \\frac{" + alphaIm + "}{"  + alphaRe + "} = $ <span style='color:green;'>$" + complexAlpha.phaseDeg() + "$</span>$\\degree$<br><br>";
-            steps += "<b>Step 3: Answer:</b><br>" +
-                    "$" + complexAlpha.abs() + "&nbsp;\\angle&nbsp;" + complexAlpha.phase() + "\\text{ rad}$<br>";
+            steps = Formulas.convertComplexToPolar_steps(complexAlpha);
 
 //            mvComplexMultiplicationStepsBySteps.setViewBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.Color5));
             mvSBSComplexNumberToPolarForm.setDisplayText(steps);

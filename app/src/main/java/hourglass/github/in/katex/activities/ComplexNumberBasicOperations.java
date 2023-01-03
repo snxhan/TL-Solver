@@ -19,8 +19,11 @@ import androidx.transition.AutoTransition;
 import androidx.transition.TransitionManager;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
+import hourglass.github.in.katex.Complex;
 import hourglass.github.in.katex.ComplexBD;
+import hourglass.github.in.katex.Formulas;
 import hourglass.github.in.katex.R;
 import katex.hourglass.in.mathlib.MathView;
 
@@ -55,22 +58,26 @@ public class ComplexNumberBasicOperations extends AppCompatActivity {
         // When Add button has been clicked
         buttonAdd.setOnClickListener(v -> {
             // Get values from ET. Set default to zero, if there is input then replace
-            BigDecimal alphaRe = new BigDecimal(String.valueOf(BigDecimal.ZERO));
-            BigDecimal alphaIm = new BigDecimal(String.valueOf(BigDecimal.ZERO));
-            BigDecimal betaRe = new BigDecimal(String.valueOf(BigDecimal.ZERO));
-            BigDecimal betaIm = new BigDecimal(String.valueOf(BigDecimal.ZERO));
+            double alphaRe = 0.0;
+            double alphaIm = 0.0;
+            double betaRe = 0.0;
+            double betaIm = 0.0;
 
             if(etAlphaRe.getText().toString().trim().length() != 0)
-                alphaRe = new BigDecimal(String.valueOf(etAlphaRe.getText()));
+                alphaRe = Double.parseDouble(String.valueOf(etAlphaRe.getText()));
             if(etAlphaIm.getText().toString().trim().length() != 0)
-                alphaIm = new BigDecimal(String.valueOf(etAlphaIm.getText()));
+                alphaIm = Double.parseDouble(String.valueOf(etAlphaIm.getText()));
             if(etBetaRe.getText().toString().trim().length() != 0)
-                betaRe = new BigDecimal(String.valueOf(etBetaRe.getText()));
+                betaRe = Double.parseDouble(String.valueOf(etBetaRe.getText()));
             if(etBetaIm.getText().toString().trim().length() != 0)
-                betaIm = new BigDecimal(String.valueOf(etBetaIm.getText()));
+                betaIm = Double.parseDouble(String.valueOf(etBetaIm.getText()));
 
-            ComplexBD a = new ComplexBD(alphaRe, alphaIm);
-            ComplexBD b = new ComplexBD(betaRe, betaIm);
+            Complex a = new Complex(alphaRe, alphaIm);
+            Complex b = new Complex(betaRe, betaIm);
+
+            // Format whole number to remove .0
+            DecimalFormat df = new DecimalFormat();
+            df.setDecimalSeparatorAlwaysShown(false);
 
 //            MathView mathView = new MathView(getApplicationContext());
 //            mathView.setClickable(true);
@@ -81,19 +88,11 @@ public class ComplexNumberBasicOperations extends AppCompatActivity {
 
             // Display results and step by step solution
             MathView mvComplexMultiplicationResults = findViewById(R.id.mvComplexConversionResults);
-            mvComplexMultiplicationResults.setDisplayText("$" + a.plus(b).toPString() + "$");
+            mvComplexMultiplicationResults.setDisplayText(Formulas.addComplex_answer(a, b));
             MathView mvComplexMultiplicationStepsBySteps = findViewById(R.id.mvRefCoeffStepsBySteps_1_1);
-            String steps = "";
-
-            steps += "Step 1: Group real part and imaginary part of complex number:<br><span style='color:red;'>$(a+bi)+(c+di)$</span><br> $= (a+c)+(b+d)i$<br>";
-            steps += "$=(" + a.re + " + " + b.re + ") + (" + a.im + " + " + b.im + ")i$<br><br>";
-            steps += "Step 2: Expand:<br>";
-            steps += "$(" + a.re.add(b.re) + ") + (" + a.im.add(b.im) + ")i$<br><br>" ;
-            steps += "Step 4: Answer:<br>";
-            steps += "$" + (a.plus(b)).toPString() + "$" ;
 
 //            mvComplexMultiplicationStepsBySteps.setViewBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.Color5));
-            mvComplexMultiplicationStepsBySteps.setDisplayText(steps);
+            mvComplexMultiplicationStepsBySteps.setDisplayText(Formulas.addComplex_steps(a, b));
 
             // Make visible results
             tvOutputHeader.setVisibility(View.VISIBLE);
@@ -102,22 +101,26 @@ public class ComplexNumberBasicOperations extends AppCompatActivity {
         // When Subtract button has been clicked
         buttonSubtract.setOnClickListener(v -> {
             // Get values from ET. Set default to zero, if there is input then replace
-            BigDecimal alphaRe = new BigDecimal(String.valueOf(BigDecimal.ZERO));
-            BigDecimal alphaIm = new BigDecimal(String.valueOf(BigDecimal.ZERO));
-            BigDecimal betaRe = new BigDecimal(String.valueOf(BigDecimal.ZERO));
-            BigDecimal betaIm = new BigDecimal(String.valueOf(BigDecimal.ZERO));
+            double alphaRe = 0.0;
+            double alphaIm = 0.0;
+            double betaRe = 0.0;
+            double betaIm = 0.0;
 
             if(etAlphaRe.getText().toString().trim().length() != 0)
-                alphaRe = new BigDecimal(String.valueOf(etAlphaRe.getText()));
+                alphaRe = Double.parseDouble(String.valueOf(etAlphaRe.getText()));
             if(etAlphaIm.getText().toString().trim().length() != 0)
-                alphaIm = new BigDecimal(String.valueOf(etAlphaIm.getText()));
+                alphaIm = Double.parseDouble(String.valueOf(etAlphaIm.getText()));
             if(etBetaRe.getText().toString().trim().length() != 0)
-                betaRe = new BigDecimal(String.valueOf(etBetaRe.getText()));
+                betaRe = Double.parseDouble(String.valueOf(etBetaRe.getText()));
             if(etBetaIm.getText().toString().trim().length() != 0)
-                betaIm = new BigDecimal(String.valueOf(etBetaIm.getText()));
+                betaIm = Double.parseDouble(String.valueOf(etBetaIm.getText()));
 
-            ComplexBD a = new ComplexBD(alphaRe, alphaIm);
-            ComplexBD b = new ComplexBD(betaRe, betaIm);
+            Complex a = new Complex(alphaRe, alphaIm);
+            Complex b = new Complex(betaRe, betaIm);
+
+            // Format whole number to remove .0
+            DecimalFormat df = new DecimalFormat();
+            df.setDecimalSeparatorAlwaysShown(false);
 
 //            MathView mathView = new MathView(getApplicationContext());
 //            mathView.setClickable(true);
@@ -128,19 +131,11 @@ public class ComplexNumberBasicOperations extends AppCompatActivity {
 
             // Display results and step by step solution
             MathView mvComplexMultiplicationResults = findViewById(R.id.mvComplexConversionResults);
-            mvComplexMultiplicationResults.setDisplayText("$" + a.minus(b).toPString() + "$");
+            mvComplexMultiplicationResults.setDisplayText(Formulas.subtractComplex_answer(a, b));
             MathView mvComplexMultiplicationStepsBySteps = findViewById(R.id.mvRefCoeffStepsBySteps_1_1);
-            String steps = "";
-
-            steps += "Step 1: Group real part and imaginary part of complex number:<br><span style='color:red;'>$(a+bi)-(c+di)$</span><br> $= (a-c)+(b-d)i$<br>";
-            steps += "$=(" + a.re + " - " + b.re + ") + (" + a.im + " - " + b.im + ")i$<br><br>";
-            steps += "Step 2: Expand:<br>";
-            steps += "$(" + a.re.subtract(b.re) + ") + (" + a.im.subtract(b.im) + ")i$<br><br>" ;
-            steps += "Step 4: Answer:<br>";
-            steps += "$" + (a.minus(b)).toPString() + "$" ;
 
 //            mvComplexMultiplicationStepsBySteps.setViewBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.Color5));
-            mvComplexMultiplicationStepsBySteps.setDisplayText(steps);
+            mvComplexMultiplicationStepsBySteps.setDisplayText(Formulas.subtractComplex_steps(a, b));
 
             // Make visible results
             tvOutputHeader.setVisibility(View.VISIBLE);
@@ -149,22 +144,26 @@ public class ComplexNumberBasicOperations extends AppCompatActivity {
         // When Multiply button has been clicked
         buttonMultiply.setOnClickListener(v -> {
             // Get values from ET. Set default to zero, if there is input then replace
-            BigDecimal alphaRe = new BigDecimal(String.valueOf(BigDecimal.ZERO));
-            BigDecimal alphaIm = new BigDecimal(String.valueOf(BigDecimal.ZERO));
-            BigDecimal betaRe = new BigDecimal(String.valueOf(BigDecimal.ZERO));
-            BigDecimal betaIm = new BigDecimal(String.valueOf(BigDecimal.ZERO));
+            double alphaRe = 0.0;
+            double alphaIm = 0.0;
+            double betaRe = 0.0;
+            double betaIm = 0.0;
 
             if(etAlphaRe.getText().toString().trim().length() != 0)
-                alphaRe = new BigDecimal(String.valueOf(etAlphaRe.getText()));
+                alphaRe = Double.parseDouble(String.valueOf(etAlphaRe.getText()));
             if(etAlphaIm.getText().toString().trim().length() != 0)
-                alphaIm = new BigDecimal(String.valueOf(etAlphaIm.getText()));
+                alphaIm = Double.parseDouble(String.valueOf(etAlphaIm.getText()));
             if(etBetaRe.getText().toString().trim().length() != 0)
-                betaRe = new BigDecimal(String.valueOf(etBetaRe.getText()));
+                betaRe = Double.parseDouble(String.valueOf(etBetaRe.getText()));
             if(etBetaIm.getText().toString().trim().length() != 0)
-                betaIm = new BigDecimal(String.valueOf(etBetaIm.getText()));
+                betaIm = Double.parseDouble(String.valueOf(etBetaIm.getText()));
 
-            ComplexBD a = new ComplexBD(alphaRe, alphaIm);
-            ComplexBD b = new ComplexBD(betaRe, betaIm);
+            Complex a = new Complex(alphaRe, alphaIm);
+            Complex b = new Complex(betaRe, betaIm);
+
+            // Format whole number to remove .0
+            DecimalFormat df = new DecimalFormat();
+            df.setDecimalSeparatorAlwaysShown(false);
 
             MathView mathView = new MathView(getApplicationContext());
             mathView.setClickable(true);
@@ -175,29 +174,11 @@ public class ComplexNumberBasicOperations extends AppCompatActivity {
 
             // Display results and step by step solution
             MathView mvComplexMultiplicationResults = findViewById(R.id.mvComplexConversionResults);
-            mvComplexMultiplicationResults.setDisplayText("$" + a.times(b).toPString() + "$");
+            mvComplexMultiplicationResults.setDisplayText(Formulas.multiplyComplex_answer(a, b));
             MathView mvComplexMultiplicationStepsBySteps = findViewById(R.id.mvRefCoeffStepsBySteps_1_1);
-            String steps = "";
-//            steps += "<p>Step 1: Apply complex arithmetic rule:<br>$(a+bi)(c+di)$<br> $= (ac-bd)+(ad+bc)i$<br>";
-//            steps += "$=(" + a.re + " * " + b.re + " - " + a.im + " * " + b.im + ") + (" + a.re + " * " + b.im + " + " + a.im + " * " + b.re + ")i$</p>";
-//            steps += "<p>Step 2: Expand:<br>";
-//            steps += "$(" + a.re.multiply(b.re) + " - " + a.im.multiply(b.im) + ") + (" + a.re.multiply(b.im) + " + " + a.im.multiply(b.re) + ")i$</p>" ;
-//            steps += "<p>Step 3: Simplify:<br>";
-//            steps += "$(" + (a.re.multiply(b.re)).subtract(a.im.multiply(b.im)) + ") + (" + (a.re.multiply(b.im)).add(a.im.multiply(b.re)) + ")i$</p>" ;
-//            steps += "<p>Step 4: Answer:<br>";
-//            steps += "$" + a.times(b) + "$</p>" ;
-
-            steps += "Step 1: Apply complex arithmetic rule:<br><span style='color:red;'>$(a+bi)(c+di)$</span><br> $= (ac-bd)+(ad+bc)i$<br>";
-            steps += "$=(" + a.re + " * " + b.re + " - " + a.im + " * " + b.im + ") + (" + a.re + " * " + b.im + " + " + a.im + " * " + b.re + ")i$<br><br>";
-            steps += "Step 2: Expand:<br>";
-            steps += "$(" + a.re.multiply(b.re) + " - " + a.im.multiply(b.im) + ") + (" + a.re.multiply(b.im) + " + " + a.im.multiply(b.re) + ")i$<br><br>" ;
-            steps += "Step 3: Simplify:<br>";
-            steps += "$(" + (a.re.multiply(b.re)).subtract(a.im.multiply(b.im)) + ") + (" + (a.re.multiply(b.im)).add(a.im.multiply(b.re)) + ")i$<br><br>" ;
-            steps += "Step 4: Answer:<br>";
-            steps += "$" + (a.times(b)).toPString() + "$" ;
 
 //            mvComplexMultiplicationStepsBySteps.setViewBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.Color5));
-            mvComplexMultiplicationStepsBySteps.setDisplayText(steps);
+            mvComplexMultiplicationStepsBySteps.setDisplayText(Formulas.multiplyComplex_steps(a, b));
 
             // Make visible results
             tvOutputHeader.setVisibility(View.VISIBLE);
@@ -206,22 +187,26 @@ public class ComplexNumberBasicOperations extends AppCompatActivity {
         // When Divide button has been clicked
         buttonDivide.setOnClickListener(v -> {
             // Get values from ET. Set default to zero, if there is input then replace
-            BigDecimal alphaRe = new BigDecimal(String.valueOf(BigDecimal.ZERO));
-            BigDecimal alphaIm = new BigDecimal(String.valueOf(BigDecimal.ZERO));
-            BigDecimal betaRe = new BigDecimal(String.valueOf(BigDecimal.ZERO));
-            BigDecimal betaIm = new BigDecimal(String.valueOf(BigDecimal.ZERO));
+            double alphaRe = 0.0;
+            double alphaIm = 0.0;
+            double betaRe = 0.0;
+            double betaIm = 0.0;
 
             if(etAlphaRe.getText().toString().trim().length() != 0)
-                alphaRe = new BigDecimal(String.valueOf(etAlphaRe.getText()));
+                alphaRe = Double.parseDouble(String.valueOf(etAlphaRe.getText()));
             if(etAlphaIm.getText().toString().trim().length() != 0)
-                alphaIm = new BigDecimal(String.valueOf(etAlphaIm.getText()));
+                alphaIm = Double.parseDouble(String.valueOf(etAlphaIm.getText()));
             if(etBetaRe.getText().toString().trim().length() != 0)
-                betaRe = new BigDecimal(String.valueOf(etBetaRe.getText()));
+                betaRe = Double.parseDouble(String.valueOf(etBetaRe.getText()));
             if(etBetaIm.getText().toString().trim().length() != 0)
-                betaIm = new BigDecimal(String.valueOf(etBetaIm.getText()));
+                betaIm = Double.parseDouble(String.valueOf(etBetaIm.getText()));
 
-            ComplexBD a = new ComplexBD(alphaRe, alphaIm);
-            ComplexBD b = new ComplexBD(betaRe, betaIm);
+            Complex a = new Complex(alphaRe, alphaIm);
+            Complex b = new Complex(betaRe, betaIm);
+
+            // Format whole number to remove .0
+            DecimalFormat df = new DecimalFormat();
+            df.setDecimalSeparatorAlwaysShown(false);
 
 //            MathView mathView = new MathView(getApplicationContext());
 //            mathView.setClickable(true);
@@ -232,38 +217,11 @@ public class ComplexNumberBasicOperations extends AppCompatActivity {
 
             // Display results and step by step solution
             MathView mvComplexMultiplicationResults = findViewById(R.id.mvComplexConversionResults);
-            mvComplexMultiplicationResults.setDisplayText("$" + a.div(b).toPString() + "$");
+            mvComplexMultiplicationResults.setDisplayText(Formulas.divideComplex_answer(a, b));
             MathView mvComplexMultiplicationStepsBySteps = findViewById(R.id.mvRefCoeffStepsBySteps_1_1);
-            String steps = "";
-
-            // Track a.im and b.im imaginary sign and put in imaginary sign if positive
-            String new_a_im = "";
-            if(a.im.compareTo(BigDecimal.ZERO) < 0)
-                new_a_im = String.valueOf(a.im) + "i"; // if negative then let it be
-            else
-                new_a_im = "+" + a.im + "i"; // if positive then add positive sign
-            String new_b_im = "";
-            if(b.im.compareTo(BigDecimal.ZERO) < 0)
-                new_b_im = String.valueOf(b.im) + "i"; // if negative then let it be
-            else
-                new_b_im = "+" + b.im + "i"; // if positive then add positive sign
-
-            steps += "Step 1: Multiply with conjugate: <br>$\\frac{"+ a.re + new_a_im +"}{"+ b.re + new_b_im +"}$<span style='color:red;'>$\\times\\frac{"+ b.conjugate() +"}{"+ b.conjugate() +"}$</span><br>";
-            steps += "$=\\frac{(" + a.times(b.conjugate()).toPString() + ")}{(" + b.times(b.conjugate()) + ")}$<br><br>";
-            steps += "Step 3: Rewrite in $(a+bi)$ form:<br>";
-            steps += "$=\\frac{" + (a.times(b.conjugate())).re + "}{" + b.times(b.conjugate()) + "} + \\frac{" + (a.times(b.conjugate())).im + "}{" + b.times(b.conjugate()) + "}i$<br><br>" ;
-            steps += "Step 4: Answer:<br>";
-            steps += "$=" + a.div(b).toPString() + "$" ;
-
-            // new alpha and beta for complex object and conveniently get conjugate
-//            ComplexBD refCoeff_Steps_a_top = new ComplexBD((zl_re.subtract(zo)), zl_im);
-//            ComplexBD refCoeff_Steps_a_bottom = new ComplexBD((zl_re.add(zo)), zl_im);
-//            steps_refCoeff += "$\\Gamma =\\frac{(" + refCoeff_Steps_a_top.times(refCoeff_Steps_a_bottom.conjugate()).toPString() + ")}{(" + refCoeff_Steps_a_bottom.times(refCoeff_Steps_a_bottom.conjugate()) + ")}$<br><br>";
-//            steps_refCoeff += "Step 4: Answer:<br>";
-//            steps_refCoeff += "$" + ((complex_zl.minus(complex_zo)).div(complex_zl.plus(complex_zo))).toPString() + "$<br><br>";
 
 //            mvComplexMultiplicationStepsBySteps.setViewBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.Color5));
-            mvComplexMultiplicationStepsBySteps.setDisplayText(steps);
+            mvComplexMultiplicationStepsBySteps.setDisplayText(Formulas.divideComplex_steps(a, b));
 
             // Make visible results
             tvOutputHeader.setVisibility(View.VISIBLE);

@@ -2,9 +2,7 @@ package hourglass.github.in.katex.activities;
 
 import static android.app.PendingIntent.getActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,20 +25,16 @@ import androidx.transition.TransitionManager;
 import java.text.DecimalFormat;
 
 import hourglass.github.in.katex.Complex;
+import hourglass.github.in.katex.Formulas;
 import hourglass.github.in.katex.R;
 import katex.hourglass.in.mathlib.MathView;
 
 public class VariablesSolver extends AppCompatActivity {
 
-//    static SharedPreferences sharedPreferences;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_variablessolver);
-        //shared prefs
-//        sharedPreferences = getSharedPreferences("appSettings", Context.MODE_PRIVATE);
-
         // Toolbar and Title
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -62,14 +56,14 @@ public class VariablesSolver extends AppCompatActivity {
         buttonSolve.setOnClickListener(V -> {
             // Get values from ET. Set default to zero, if there is input then replace
             // FORMULA 1: COMPUTING REFLECTION COEFFICIENT (requires: Zl & Z0)
-            double zl_re = 0;
-            double zl_im = 0;
-            double z0 = 0;
+            double zl_re = 0.0;
+            double zl_im = 0.0;
+            double z0 = 0.0;
             // FORMULA 2: COMPUTING POWER LOAD (requires: Zl & Z0, Vg and Zg)
-            double vg_re = 0;
-            double vg_im = 0;
-            double zg_re = 0;
-            double zg_im = 0;
+            double vg_re = 0.0;
+            double vg_im = 0.0;
+            double zg_re = 0.0;
+            double zg_im = 0.0;
 
             if (etZl_re_inputs.getText().toString().trim().length() != 0)
                 zl_re = Double.parseDouble(String.valueOf(etZl_re_inputs.getText()));
@@ -112,8 +106,8 @@ public class VariablesSolver extends AppCompatActivity {
             MathView mvRefCoeffStepsBySteps_1_3 = findViewById(R.id.mvRefCoeffStepsBySteps_1_3);
 
             // Get answer and set results
-            String refCoeff_answer = (complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).toString();
-            refCoeff_outputs_results.setDisplayText("$" + refCoeff_answer + "$");
+            String refCoeff_answer = Formulas.reflectionCoefficient_answer(complex_zl, complex_z0);
+            refCoeff_outputs_results.setDisplayText(refCoeff_answer);
 
             // Track zl imaginary sign and put in imaginary sign
             String new_zl_im = "";
@@ -144,19 +138,20 @@ public class VariablesSolver extends AppCompatActivity {
             // Formula 1.1.1: Default (Continuation)
             String steps_refCoeff_1_1_1 = "";
             steps_refCoeff_1_1_1 += "<br>Step 4: Answer:<br>";
-            steps_refCoeff_1_1_1 += "$" + refCoeff_answer + "$<br>";
+            steps_refCoeff_1_1_1 += refCoeff_answer + "<br>";
 
             // Formula 1.3: Alternative Answers
             String steps_refCoeff_1_3 = "";
             steps_refCoeff_1_3 += "Answer in Polar form<br>";
-            steps_refCoeff_1_3 += "$" + (complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).abs() + "\\angle" + (complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).phase() + "\\text{ rad}$ <br>";
-            steps_refCoeff_1_3 += "$" + (complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).abs() + "\\angle" + (complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).phaseDeg() + "\\degree$";
+            steps_refCoeff_1_3 += Formulas.convertComplexToPolar_answer((complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)));
+            steps_refCoeff_1_3 += "<br>";
+            steps_refCoeff_1_3 += Formulas.convertComplexToPolar_steps((complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)));
 
             // Set 1, 1.1, 1.2 step-by-step solution to Front-end
-            mvRefCoeffStepsBySteps_1_1.setDisplayText(steps_refCoeff_1_1);
-            mvRefCoeffStepsBySteps_1_2.setDisplayText(steps_refCoeff_1_2);
-            mvRefCoeffStepsBySteps_1_1_1.setDisplayText(steps_refCoeff_1_1_1);
-            mvRefCoeffStepsBySteps_1_3.setDisplayText(steps_refCoeff_1_3);
+            mvRefCoeffStepsBySteps_1_1.setDisplayText(Formulas.reflectionCoefficient_steps_1_1(complex_zl, complex_z0));
+            mvRefCoeffStepsBySteps_1_2.setDisplayText(Formulas.reflectionCoefficient_steps_1_2(complex_zl, complex_z0));
+            mvRefCoeffStepsBySteps_1_1_1.setDisplayText(Formulas.reflectionCoefficient_steps_1_1_1(complex_zl, complex_z0));
+            mvRefCoeffStepsBySteps_1_3.setDisplayText(Formulas.reflectionCoefficient_steps_1_3(complex_zl, complex_z0));
 
             // apply background colour to sub-expansions
             mvRefCoeffStepsBySteps_1_2.setViewBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
@@ -173,7 +168,7 @@ public class VariablesSolver extends AppCompatActivity {
             Complex static_eight = new Complex (8, 0);
             Complex static_one = new Complex (1, 0);
 
-            Complex refCoeff = new Complex ((complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).re, (complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).im);
+            Complex refCoeff = new Complex ((complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).re(), (complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).im());
 
             // Init variables
             MathView mvPower_outputs_results = findViewById(R.id.power_outputs_results);
@@ -205,7 +200,7 @@ public class VariablesSolver extends AppCompatActivity {
             mvPowerStepsBySteps.setDisplayText(steps_power);
 
         });
-        // When test button has been pressed, load default inputs
+        // When test button is pressed, load default inputs
         buttonTest.setOnClickListener(V -> {
             etZ0_inputs.setText(String.valueOf(75)); //z0
             etZl_re_inputs.setText(String.valueOf(60));

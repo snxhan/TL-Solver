@@ -38,8 +38,8 @@ import hourglass.github.in.katex.activities.MainActivity;
 import hourglass.github.in.katex.activities.VariablesSolver;
 
 public class Complex {
-    public final double re;   // the real part
-    public final double im;   // the imaginary part
+    private final double re;   // the real part
+    private final double im;   // the imaginary part
 
     // create a new object with the given real and imaginary parts
     public Complex(double real, double imag) {
