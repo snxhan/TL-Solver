@@ -165,39 +165,17 @@ public class VariablesSolver extends AppCompatActivity {
             // ==================================================================================================== //
             Complex complex_vg = new Complex (vg_re, vg_im);
             Complex complex_zg = new Complex (zg_re, zg_im);
-            Complex static_eight = new Complex (8, 0);
-            Complex static_one = new Complex (1, 0);
-
-            Complex refCoeff = new Complex ((complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).re(), (complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).im());
 
             // Init variables
             MathView mvPower_outputs_results = findViewById(R.id.power_outputs_results);
             MathView mvPowerStepsBySteps = findViewById(R.id.mvPowerStepsBySteps);
 
-            // Pre-requisites initialisations for Answer and Step-by-step
-            // to make 1 minus-able
-            Complex abs_refCoeff_squared = new Complex(((complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).abs()) * ((complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).abs()),0);
-
             // Get answer and set result
-            String power_answer = (((complex_vg.times(complex_vg)).divides(static_eight.times(complex_zg))).times(static_one.minus(abs_refCoeff_squared))).toString();
-            mvPower_outputs_results.setDisplayText(power_answer);
+            String power_answer = Formulas.powerLoad_answer(complex_zl, complex_z0, complex_vg, complex_zg);
+            mvPower_outputs_results.setDisplayText( power_answer + "&nbsp;$W$");
 
-            // Get Step-by-step solution and set solution
-            String steps_power = "";
-            steps_power += "Step 1: Recall $P_L$ (Power Load) formula:<br><span style='color:red;'>$P_L = \\frac{(V_g)^2}{8Z_g}(1-\\vert\\Gamma_L\\vert^2)$</span><br><br>";
-            steps_power += "Step 2: Compute $\\Gamma_L$ (Reflection Coefficient) <br>Expand for detailed steps. <br>";
-            steps_power += "$\\Gamma_L = " + ((complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0))) + "$<br><br>";
-            steps_power += "Step 3: Substitute inputs into $P_L$ formula:<br>";
-            steps_power += "$P_L = \\frac{(" + vg_re + " + " + vg_im + "i)^2}{8(" + zg_re + " + " + zg_im + "i)}(1-\\vert " + refCoeff_answer + "\\vert^2)$ <br><br>";
-            steps_power += "Step 4: Calculate value of $\\vert\\Gamma_L\\vert$:<br>";
-            steps_power += "$P_L = \\frac{(" + vg_re + " + " + vg_im + "i)^2}{8(" + zg_re + " + " + zg_im + "i)}(1-( " + (complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).abs() + ")^2)$<br><br>";
-            steps_power += "Step 5: Calculate value of $\\vert\\Gamma_L\\vert^2$:<br>";
-            steps_power += "$P_L = \\frac{(" + vg_re + " + " + vg_im + "i)^2}{8(" + zg_re + " + " + zg_im + "i)}(1-( " + (((complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).abs()) * ((complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)).abs()))+ "))$<br><br>";
-            steps_power += "Step 6: Expand:<br>";
-            steps_power += "$P_L = \\frac{" + complex_vg.times(complex_vg) + "}{" + static_eight.times(complex_zg) + "}(" + static_one.minus(abs_refCoeff_squared)+ ")$<br><br>";
-            steps_power += "Step 7: Answer:<br>";
-            steps_power += "$P_L = " + (complex_vg.times(complex_vg).divides(static_eight.times(complex_zg))).times(static_one.minus(abs_refCoeff_squared)) +"\\text{ W}$<br><br>";
-            mvPowerStepsBySteps.setDisplayText(steps_power);
+            // Set steps
+            mvPowerStepsBySteps.setDisplayText(Formulas.powerLoad_steps_1_1(complex_zl, complex_z0, complex_vg, complex_zg));
 
         });
         // When test button is pressed, load default inputs

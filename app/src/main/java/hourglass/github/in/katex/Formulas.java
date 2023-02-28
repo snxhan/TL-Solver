@@ -246,4 +246,41 @@ public class Formulas {
         return steps;
     }
 
+    /**
+     * FORMULA t2a : Power Load
+     */
+    public static String powerLoad_answer(Complex zl, Complex z0, Complex vg, Complex zg){
+        String answer = "";
+        Complex static_eight = new Complex (8, 0);
+        Complex static_one = new Complex (1, 0);
+        Complex abs_refCoeff_squared = new Complex(((zl.minus(z0)).divides(zl.plus(z0)).abs()) * ((zl.minus(z0)).divides(zl.plus(z0)).abs()),0);
+        answer = "$" + (((vg.times(vg)).divides(static_eight.times(zg))).times(static_one.minus(abs_refCoeff_squared))).toString() + "$";
+        return answer;
+    }
+    /**
+     * FORMULA t2s_1 : Power Load
+     */
+    public static String powerLoad_steps_1_1(Complex zl, Complex z0, Complex vg, Complex zg){
+        String steps = "";
+
+        Complex static_eight = new Complex (8, 0);
+        Complex static_one = new Complex (1, 0);
+        Complex abs_refCoeff_squared = new Complex(((zl.minus(z0)).divides(zl.plus(z0)).abs()) * ((zl.minus(z0)).divides(zl.plus(z0)).abs()),0);
+        String reflectionCoefficient_answer = Formulas.reflectionCoefficient_answer(zl, z0).replace("$", "");
+
+        steps += "Step 1: Recall $P_L$ (Power Load) formula:<br><span style='color:red;'>$P_L = \\frac{(V_g)^2}{8Z_g}(1-\\vert\\Gamma_L\\vert^2)$</span><br><br>";
+        steps += "Step 2: Compute $\\Gamma_L$ (Reflection Coefficient) <br>Expand for detailed steps. <br>";
+        steps += "$\\Gamma_L = " + ((zl.minus(z0)).divides(zl.plus(z0))) + "$<br><br>";
+        steps += "Step 3: Substitute inputs into $P_L$ formula:<br>";
+        steps += "$P_L = \\frac{(" + vg.re() + " + " + vg.im() + "i)^2}{8(" + zg.re() + " + " + zg.im() + "i)}(1-\\vert " + reflectionCoefficient_answer + "\\vert^2)$ <br><br>";
+        steps += "Step 4: Calculate value of $\\vert\\Gamma_L\\vert$:<br>";
+        steps += "$P_L = \\frac{(" + vg.re() + " + " + vg.im() + "i)^2}{8(" + zg.re() + " + " + zg.im() + "i)}(1-( " + (zl.minus(z0)).divides(zl.plus(z0)).abs() + ")^2)$<br><br>";
+        steps += "Step 5: Calculate value of $\\vert\\Gamma_L\\vert^2$:<br>";
+        steps += "$P_L = \\frac{(" + vg.re() + " + " + vg.im() + "i)^2}{8(" + zg.re() + " + " + zg.im() + "i)}(1-( " + (((zl.minus(z0)).divides(zl.plus(z0)).abs()) * ((zl.minus(z0)).divides(zl.plus(z0)).abs()))+ "))$<br><br>";
+        steps += "Step 6: Expand:<br>";
+        steps += "$P_L = \\frac{" + vg.times(vg) + "}{" + static_eight.times(zg) + "}(" + static_one.minus(abs_refCoeff_squared)+ ")$<br><br>";
+        steps += "Step 7: Answer:<br>";
+        steps += "$P_L = " + (vg.times(vg).divides(static_eight.times(zg))).times(static_one.minus(abs_refCoeff_squared)) +"\\text{ W}$<br><br>";
+        return steps;
+    }
 }
