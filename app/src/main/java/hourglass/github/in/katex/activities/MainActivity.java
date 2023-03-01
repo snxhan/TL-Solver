@@ -120,4 +120,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(),VariablesSolver.class);
         startActivity(intent);
     }
+
+    public void formulaListView(View view) {
+        Log.d(TAG,"Complex Number View clicked");
+        Intent intent = new Intent(getApplicationContext(),FormulaList.class);
+        startActivity(intent);
+    }
 }

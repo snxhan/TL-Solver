@@ -110,6 +110,15 @@
             android:text="Variables Solver"
             android:onClick="variablesSolverView"/>
 
+        <Button
+            style="@style/AuthButton"
+            android:id="@+id/button7"
+            android:layout_width="240dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:text="Formula List"
+            android:onClick="formulaListView"/>
+
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

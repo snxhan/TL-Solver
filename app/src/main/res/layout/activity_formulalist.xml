@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linear_parent_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorPrimary"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Reflection Coefficient"
+                    android:textColor="@color/primary_text" />
+
+
+                <katex.hourglass.in.mathlib.MathView
+                    android:id="@+id/refCoeff1_Formula"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/primary_text"
+                    app:setClickable="false"
+                    app:setText="$\\Gamma_{in} = \\frac{\\Zeta_{in} -\\Zeta_0}{\\Zeta_{in} +\\Zeta_0}$"
+                    app:setTextSize="15sp" />
+
+                <katex.hourglass.in.mathlib.MathView
+                    android:id="@+id/refCoeff2_Formula"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/primary_text"
+                    app:setClickable="false"
+                    app:setText="$\\Gamma_{L} = \\frac{\\Zeta_L -\\Zeta_0}{\\Zeta_L +\\Zeta_0}$"
+                    app:setTextSize="15sp" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Input Impedence"
+                    android:textColor="@color/primary_text" />
+
+                <katex.hourglass.in.mathlib.MathView
+                    android:id="@+id/inputImpedence1_Formula"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/primary_text"
+                    app:setClickable="false"
+                    app:setText="$\\Zeta_{in} = \\Zeta_0\\frac{\\Zeta_L + j\\Zeta_0\\tan (\\beta \\ell)}{\\Zeta_0 + j\\Zeta_L\\tan (\\beta \\ell)}$"
+                    app:setTextSize="15sp" />
+
+                <katex.hourglass.in.mathlib.MathView
+                    android:id="@+id/inputImpedence2_Formula"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/primary_text"
+                    app:setClickable="false"
+                    app:setText="$\\Zeta_{in} = \\Zeta_0\\frac{1 + \\Gamma_{L} e^{-j2\\beta\\ell} }{1 + \\Gamma_{L} e^{-j2\\beta\\ell}}$"
+                    app:setTextSize="15sp" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Power Load"
+                    android:textColor="@color/primary_text" />
+
+                <katex.hourglass.in.mathlib.MathView
+                    android:id="@+id/powerLoad1_Formula"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/primary_text"
+                    app:setClickable="false"
+                    app:setText="$P_{in} = \\frac{Vg^2}{8Z_g}(1-\\vert \\Gamma_L \\vert^2)$"
+                    app:setTextSize="15sp" />
+
+                <katex.hourglass.in.mathlib.MathView
+                    android:id="@+id/powerLoad2_Formula"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/primary_text"
+                    app:setClickable="false"
+                    app:setText="$P_{in} = \\frac{1}{2} \\vert \\frac{V_g}{Z_g + Z_{in}} \\vert ^2 \\real (Z_{in})$"
+                    app:setTextSize="15sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

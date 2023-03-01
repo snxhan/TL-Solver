@@ -81,10 +81,6 @@ public class VariablesSolver extends AppCompatActivity {
             if (etZg_im_inputs.getText().toString().trim().length() != 0)
                 zg_im = Double.parseDouble(String.valueOf(etZg_im_inputs.getText()));
 
-            // Format whole number to remove .0
-            DecimalFormat df = new DecimalFormat();
-            df.setDecimalSeparatorAlwaysShown(false);
-
             // ==================================================================================================== //
             // FORMULA 1: COMPUTING REFLECTION COEFFICIENT (requires: Zl & Z0)
             // Step-by-step solution:
@@ -109,60 +105,23 @@ public class VariablesSolver extends AppCompatActivity {
             String refCoeff_answer = Formulas.reflectionCoefficient_answer(complex_zl, complex_z0);
             refCoeff_outputs_results.setDisplayText(refCoeff_answer);
 
-            // Track zl imaginary sign and put in imaginary sign
-            String new_zl_im = "";
-            if (zl_im < 0)
-                new_zl_im = String.valueOf(zl_im) + "i"; // if negative then let it be
-            else
-                new_zl_im = "+" + zl_im + "i"; // if positive then add positive sign
-
-            // Get Step-by-step solution and set solution
-            // Formula 1.1 : Default
-            String steps_refCoeff_1_1 = "";
-            steps_refCoeff_1_1 += "Step 1: Recall $\\Gamma$ (Gamma) formula:<br><span style='color:red;'>$\\Gamma = \\frac{\\Zeta_L -\\Zeta_0}{\\Zeta_L +\\Zeta_0}$</span><br><br>";
-            steps_refCoeff_1_1 += "Step 2: Substitute with given inputs:<br>";
-            steps_refCoeff_1_1 += "$\\Gamma =\\frac{(" + df.format(zl_re) + (new_zl_im) + ")-(" + df.format(z0) + ")}{(" + zl_re + new_zl_im + ")+(" + df.format(z0) + ")}$<br><br>";
-            steps_refCoeff_1_1 += "Step 3: Group real parts and imaginary parts and simplify: <br> <span style='color:red;'><i>*Compute using calculator</i></span><br> ";
-            steps_refCoeff_1_1 += "$\\Gamma =\\frac{(" + (zl_re - z0) + ")+(" + (new_zl_im) + ")}{(" + (zl_re + z0) + ")+(" + new_zl_im + ")}$<br>";
-
-            // Formula 1.2: Expansion of Complex Number
-            String steps_refCoeff_1_2 = "";
-            steps_refCoeff_1_2 += "Sub-step 3a: Multiply by the conjugate: <br>";
-            steps_refCoeff_1_2 += "$\\Gamma =\\frac{(" + (zl_re - z0) + ")+(" + new_zl_im + ")}{(" + (zl_re - z0) + ")+(" + new_zl_im + ")} \\times \\frac{(" + (zl_re + z0) + ")-(" + new_zl_im + ")}{(" + (zl_re + z0) + ")-(" + new_zl_im + ")}$<br><br>";
-            steps_refCoeff_1_2 += "Sub-step 3b: Group real parts and imaginary parts and simplify: <br>";
-            // new alpha and beta for complex object and conveniently get conjugate
-            Complex refCoeff_Steps_a_top = new Complex((zl_re - z0), zl_im);
-            Complex refCoeff_Steps_a_bottom = new Complex((zl_re+ z0), zl_im);
-            steps_refCoeff_1_2 += "$\\Gamma =\\frac{(" + refCoeff_Steps_a_top.times(refCoeff_Steps_a_bottom.conjugate()) + ")}{(" + refCoeff_Steps_a_bottom.times(refCoeff_Steps_a_bottom.conjugate()) + ")}$<br>";
-
-            // Formula 1.1.1: Default (Continuation)
-            String steps_refCoeff_1_1_1 = "";
-            steps_refCoeff_1_1_1 += "<br>Step 4: Answer:<br>";
-            steps_refCoeff_1_1_1 += refCoeff_answer + "<br>";
-
-            // Formula 1.3: Alternative Answers
-            String steps_refCoeff_1_3 = "";
-            steps_refCoeff_1_3 += "Answer in Polar form<br>";
-            steps_refCoeff_1_3 += Formulas.convertComplexToPolar_answer((complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)));
-            steps_refCoeff_1_3 += "<br>";
-            steps_refCoeff_1_3 += Formulas.convertComplexToPolar_steps((complex_zl.minus(complex_z0)).divides(complex_zl.plus(complex_z0)));
-
             // Set 1, 1.1, 1.2 step-by-step solution to Front-end
             mvRefCoeffStepsBySteps_1_1.setDisplayText(Formulas.reflectionCoefficient_steps_1_1(complex_zl, complex_z0));
             mvRefCoeffStepsBySteps_1_2.setDisplayText(Formulas.reflectionCoefficient_steps_1_2(complex_zl, complex_z0));
             mvRefCoeffStepsBySteps_1_1_1.setDisplayText(Formulas.reflectionCoefficient_steps_1_1_1(complex_zl, complex_z0));
             mvRefCoeffStepsBySteps_1_3.setDisplayText(Formulas.reflectionCoefficient_steps_1_3(complex_zl, complex_z0));
 
-            // apply background colour to sub-expansions
+            // Apply background colour to sub-expansions
             mvRefCoeffStepsBySteps_1_2.setViewBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
             mvRefCoeffStepsBySteps_1_3.setViewBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
 
-            // Example of setting background colour
-            // mvRefCoeffStepsBySteps.setViewBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.Color5));
-
             // ==================================================================================================== //
             // FORMULA 2: COMPUTING POWER LOAD (requires: Zl & Z0, Vg and Zg)
+            // Step-by-Step solution:
+            // 1.1.1 : Default
             // ==================================================================================================== //
+
+            // Take value from inputs and create new Complex Object
             Complex complex_vg = new Complex (vg_re, vg_im);
             Complex complex_zg = new Complex (zg_re, zg_im);
 
@@ -177,7 +136,9 @@ public class VariablesSolver extends AppCompatActivity {
             // Set steps
             mvPowerStepsBySteps.setDisplayText(Formulas.powerLoad_steps_1_1(complex_zl, complex_z0, complex_vg, complex_zg));
 
+            // Apply background colour to sub-expansions
         });
+
         // When test button is pressed, load default inputs
         buttonTest.setOnClickListener(V -> {
             etZ0_inputs.setText(String.valueOf(75)); //z0
@@ -188,6 +149,7 @@ public class VariablesSolver extends AppCompatActivity {
             etZg_re_inputs.setText(String.valueOf(75));
             etZg_im_inputs.setText(String.valueOf(0));
         });
+
         // Scroll to bottom when expanding
         final ScrollView scrollview = findViewById(R.id.scrollView);
 
@@ -224,7 +186,6 @@ public class VariablesSolver extends AppCompatActivity {
                 TransitionManager.beginDelayedTransition(cardView1, new AutoTransition());
                 hiddenGroup1_2.setVisibility(View.VISIBLE);
                 arrow1_2.setImageResource(android.R.drawable.arrow_up_float);
-
             }
         });
         // FORMULA 1.3 (Alternative Answer)
@@ -239,7 +200,6 @@ public class VariablesSolver extends AppCompatActivity {
                 TransitionManager.beginDelayedTransition(cardView1, new AutoTransition());
                 hiddenGroup1_3.setVisibility(View.VISIBLE);
                 arrow1_3.setImageResource(android.R.drawable.arrow_up_float);
-
             }
         });
         // FORMULA 2 (POWER) : Expandable and collapsible steps
@@ -251,7 +211,6 @@ public class VariablesSolver extends AppCompatActivity {
                 TransitionManager.beginDelayedTransition(cardView2, new AutoTransition());
                 hiddenGroup2.setVisibility(View.GONE);
                 arrow2.setImageResource(android.R.drawable.arrow_down_float);
-
             } else {
                 TransitionManager.beginDelayedTransition(cardView2, new AutoTransition());
                 hiddenGroup2.setVisibility(View.VISIBLE);
@@ -299,7 +258,6 @@ public class VariablesSolver extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
     // Menu button in toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -307,6 +265,4 @@ public class VariablesSolver extends AppCompatActivity {
         inflater.inflate(R.menu.variablessolver_menu, menu);
         return true;
     }
-
-
 }
