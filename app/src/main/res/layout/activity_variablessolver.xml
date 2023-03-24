@@ -110,41 +110,41 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/laHeader" />
 
-            <TextView
-                android:id="@+id/freq_inputs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
-                android:text="Frequency"
-                android:textColor="@color/primary_text"
-                app:layout_constraintEnd_toEndOf="@+id/verticalGuideline_inputs"
-                app:layout_constraintHorizontal_bias="0.475"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/charImp_inputs" />
+<!--            <TextView-->
+<!--                android:id="@+id/freq_inputs"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="36dp"-->
+<!--                android:text="Frequency"-->
+<!--                android:textColor="@color/primary_text"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/verticalGuideline_inputs"-->
+<!--                app:layout_constraintHorizontal_bias="0.475"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/charImp_inputs" />-->
 
-            <TextView
-                android:id="@+id/lineLen_inputs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:text="Line Length"
-                android:textColor="@color/primary_text"
-                app:layout_constraintEnd_toEndOf="@+id/verticalGuideline_inputs"
-                app:layout_constraintHorizontal_bias="0.503"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/freq_inputs" />
+<!--            <TextView-->
+<!--                android:id="@+id/lineLen_inputs"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="40dp"-->
+<!--                android:text="Line Length"-->
+<!--                android:textColor="@color/primary_text"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/verticalGuideline_inputs"-->
+<!--                app:layout_constraintHorizontal_bias="0.503"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/freq_inputs" />-->
 
-            <TextView
-                android:id="@+id/relPer_inputs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
-                android:text="Relative Permittivity"
-                android:textColor="@color/primary_text"
-                app:layout_constraintEnd_toEndOf="@+id/verticalGuideline_inputs"
-                app:layout_constraintHorizontal_bias="0.481"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lineLen_inputs" />
+<!--            <TextView-->
+<!--                android:id="@+id/relPer_inputs"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="36dp"-->
+<!--                android:text="Relative Permittivity"-->
+<!--                android:textColor="@color/primary_text"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/verticalGuideline_inputs"-->
+<!--                app:layout_constraintHorizontal_bias="0.481"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/lineLen_inputs" />-->
 
             <androidx.constraintlayout.widget.Group
                 android:layout_width="wrap_content"
@@ -164,41 +164,56 @@
                 app:layout_constraintStart_toStartOf="@+id/verticalGuideline_inputs"
                 app:layout_constraintTop_toBottomOf="@+id/laHeader" />
 
-            <EditText
-                android:id="@+id/etFreq_inputs"
-                android:layout_width="100dp"
+            <katex.hourglass.in.mathlib.MathView
+                android:id="@+id/etZ0_inputs_units"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.266"
-                app:layout_constraintStart_toStartOf="@+id/verticalGuideline_inputs"
-                app:layout_constraintTop_toBottomOf="@+id/etZ0_inputs" />
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="25dp"
+                app:setText="ohms ($\\Omega$)"
+                app:setTextSize="7sp"
+                android:textColor="@color/primary_text"
+                app:layout_constraintStart_toEndOf="@+id/etZ0_inputs"
+                app:layout_constraintHorizontal_bias="0.5"
+                android:layout_gravity="center"
+                app:setClickable="false"
+                app:layout_constraintTop_toBottomOf="@+id/laHeader" />
 
-            <EditText
-                android:id="@+id/etLineLen_inputs"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.266"
-                app:layout_constraintStart_toStartOf="@+id/verticalGuideline_inputs"
-                app:layout_constraintTop_toBottomOf="@+id/etFreq_inputs" />
+<!--            <EditText-->
+<!--                android:id="@+id/etFreq_inputs"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="12dp"-->
+<!--                android:ems="10"-->
+<!--                android:inputType="textPersonName"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.266"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/verticalGuideline_inputs"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/etZ0_inputs" />-->
 
-            <EditText
-                android:id="@+id/etRelPer_inputs"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.266"
-                app:layout_constraintStart_toStartOf="@+id/verticalGuideline_inputs"
-                app:layout_constraintTop_toBottomOf="@+id/etLineLen_inputs" />
+<!--            <EditText-->
+<!--                android:id="@+id/etLineLen_inputs"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="12dp"-->
+<!--                android:ems="10"-->
+<!--                android:inputType="textPersonName"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.266"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/verticalGuideline_inputs"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/etFreq_inputs" />-->
+
+<!--            <EditText-->
+<!--                android:id="@+id/etRelPer_inputs"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="12dp"-->
+<!--                android:ems="10"-->
+<!--                android:inputType="textPersonName"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.266"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/verticalGuideline_inputs"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/etLineLen_inputs" />-->
 
             <TextView
                 android:id="@+id/loadHeader"
@@ -213,34 +228,34 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etRelPer_inputs" />
+                app:layout_constraintTop_toBottomOf="@+id/etZ0_inputs" />
 
-            <TextView
+            <katex.hourglass.in.mathlib.MathView
                 android:id="@+id/zl_inputs"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:text="ZL"
+                android:layout_marginTop="20dp"
+                app:setText="Load Impedance, $\\Zeta_L$"
+                app:setTextSize="7sp"
                 android:textColor="@color/primary_text"
-                app:layout_constraintEnd_toStartOf="@+id/verticalGuideline_inputs"
-                app:layout_constraintHorizontal_bias="0.476"
+                app:layout_constraintEnd_toEndOf="@+id/verticalGuideline_inputs"
+                app:layout_constraintHorizontal_bias="0.5"
+                android:layout_gravity="center"
+                app:setClickable="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/loadHeader" />
 
-            <TextView
-                android:id="@+id/generatorHeader"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:background="@color/background"
-                android:gravity="left"
-                android:text="Generator"
-                android:textColor="@color/primary_text"
-                android:textSize="22sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/zl_inputs" />
+<!--            <TextView-->
+<!--                android:id="@+id/zl_inputs"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="28dp"-->
+<!--                android:text="ZL"-->
+<!--                android:textColor="@color/primary_text"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/verticalGuideline_inputs"-->
+<!--                app:layout_constraintHorizontal_bias="0.476"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/loadHeader" />-->
 
             <EditText
                 android:id="@+id/etZl_re_inputs"
@@ -287,28 +302,73 @@
                 app:layout_constraintTop_toBottomOf="@+id/loadHeader"
                 app:layout_constraintVertical_bias="0.456" />
 
-            <TextView
+            <katex.hourglass.in.mathlib.MathView
                 android:id="@+id/zl_inputs_units"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="ohms"
-                app:layout_constraintBottom_toTopOf="@+id/generatorHeader"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="25dp"
+                app:setText="ohms ($\\Omega$)"
+                app:setTextSize="7sp"
+                android:textColor="@color/primary_text"
                 app:layout_constraintStart_toEndOf="@+id/etZl_im_inputs"
-                app:layout_constraintTop_toBottomOf="@+id/loadHeader"
-                app:layout_constraintVertical_bias="0.491" />
+                app:layout_constraintHorizontal_bias="0.5"
+                android:layout_gravity="center"
+                app:setClickable="false"
+                app:layout_constraintTop_toBottomOf="@+id/loadHeader" />
+
+<!--            <TextView-->
+<!--                android:id="@+id/zl_inputs_units"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="ohms"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/generatorHeader"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.5"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/etZl_im_inputs"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/loadHeader"-->
+<!--                app:layout_constraintVertical_bias="0.491" />-->
 
             <TextView
-                android:id="@+id/vg_inputs"
-                android:layout_width="wrap_content"
+                android:id="@+id/generatorHeader"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
-                android:text="Vg"
-                app:layout_constraintEnd_toStartOf="@+id/verticalGuideline_inputs"
-                app:layout_constraintHorizontal_bias="0.506"
+                android:layout_marginTop="28dp"
+                android:background="@color/background"
+                android:gravity="left"
+                android:text="Generator"
+                android:textColor="@color/primary_text"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/zl_inputs" />
+
+            <katex.hourglass.in.mathlib.MathView
+                android:id="@+id/vg_inputs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                app:setText="Voltage Source, $V_g$"
+                app:setTextSize="7sp"
+                android:textColor="@color/primary_text"
+                app:layout_constraintEnd_toEndOf="@+id/verticalGuideline_inputs"
+                app:layout_constraintHorizontal_bias="0.5"
+                android:layout_gravity="center"
+                app:setClickable="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/generatorHeader" />
+
+<!--            <TextView-->
+<!--                android:id="@+id/vg_inputs"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="36dp"-->
+<!--                android:text="Vg"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/verticalGuideline_inputs"-->
+<!--                app:layout_constraintHorizontal_bias="0.506"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/generatorHeader" />-->
 
             <TextView
                 android:id="@+id/vg_inputs_j"
@@ -321,16 +381,31 @@
                 app:layout_constraintEnd_toStartOf="@+id/vg_inputs_im"
                 app:layout_constraintTop_toBottomOf="@+id/generatorHeader" />
 
-            <TextView
+            <katex.hourglass.in.mathlib.MathView
                 android:id="@+id/vg_inputs_units"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginRight="12dp"
-                android:text="volts"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="5dp"
+                app:setText="volts ($V$)"
+                app:setTextSize="7sp"
+                android:textColor="@color/primary_text"
+                app:layout_constraintStart_toEndOf="@+id/vg_inputs_im"
+                app:layout_constraintHorizontal_bias="0.5"
+                android:layout_gravity="center"
+                app:setClickable="false"
                 app:layout_constraintTop_toBottomOf="@+id/generatorHeader" />
+
+<!--            <TextView-->
+<!--                android:id="@+id/vg_inputs_units"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="28dp"-->
+<!--                android:layout_marginEnd="12dp"-->
+<!--                android:layout_marginRight="12dp"-->
+<!--                android:text="volts"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/generatorHeader" />-->
 
             <EditText
                 android:id="@+id/vg_inputs_re"
@@ -396,27 +471,57 @@
                 app:layout_constraintEnd_toStartOf="@+id/zg_inputs_units"
                 app:layout_constraintTop_toBottomOf="@+id/vg_inputs_im" />
 
-            <TextView
+            <katex.hourglass.in.mathlib.MathView
                 android:id="@+id/zg_inputs_units"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:text="ohms"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="35dp"
+                app:setText="ohms ($\\Omega$)"
+                app:setTextSize="7sp"
+                android:textColor="@color/primary_text"
+                app:layout_constraintStart_toEndOf="@+id/zg_inputs_im"
+                app:layout_constraintHorizontal_bias="0.5"
+                android:layout_gravity="center"
+                app:setClickable="false"
                 app:layout_constraintTop_toBottomOf="@+id/vg_inputs_units" />
 
-            <TextView
+<!--            <TextView-->
+<!--                android:id="@+id/zg_inputs_units"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="36dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_marginRight="16dp"-->
+<!--                android:text="ohms"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/vg_inputs_units" />-->
+
+            <katex.hourglass.in.mathlib.MathView
                 android:id="@+id/zg_inputs"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="44dp"
-                android:text="Zg"
-                app:layout_constraintEnd_toStartOf="@+id/verticalGuideline_inputs"
-                app:layout_constraintHorizontal_bias="0.503"
+                android:layout_marginTop="35dp"
+                app:setText="Internal Impedance, $Z_g$"
+                app:setTextSize="7sp"
+                android:textColor="@color/primary_text"
+                app:layout_constraintEnd_toEndOf="@+id/verticalGuideline_inputs"
+                app:layout_constraintHorizontal_bias="0.5"
+                android:layout_gravity="center"
+                app:setClickable="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vg_inputs" />
+
+<!--            <TextView-->
+<!--                android:id="@+id/zg_inputs"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="44dp"-->
+<!--                android:text="Zg"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/verticalGuideline_inputs"-->
+<!--                app:layout_constraintHorizontal_bias="0.503"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/vg_inputs" />-->
 
             <Button
                 android:id="@+id/buttonLoadTestVariables"

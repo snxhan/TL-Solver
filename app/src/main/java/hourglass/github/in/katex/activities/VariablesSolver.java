@@ -246,10 +246,10 @@ public class VariablesSolver extends AppCompatActivity {
                 Intent a = new Intent(this, MainActivity.class);
                 finish();
                 return true;
-            case R.id.variablesSolver_help:
-                Intent b = new Intent(this, ComplexNumberAdd.class);
-                this.startActivity(b);
-                return true;
+//            case R.id.variablesSolver_help:
+//                Intent b = new Intent(this, ComplexNumberAdd.class);
+//                this.startActivity(b);
+//                return true;
             case R.id.variablesSolver_settings:
                 Intent c = new Intent(this, VariablesSolverSettings.class);
                 this.startActivity(c);

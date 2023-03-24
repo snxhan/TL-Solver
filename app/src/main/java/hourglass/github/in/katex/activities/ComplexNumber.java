@@ -40,10 +40,10 @@ public class ComplexNumber extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 return true;
-            case R.id.complexNumber_add:
-                Intent b = new Intent(this,ComplexNumberAdd.class);
-                this.startActivity(b);
-                return true;
+//            case R.id.complexNumber_add:
+//                Intent b = new Intent(this,ComplexNumberAdd.class);
+//                this.startActivity(b);
+//                return true;
             case R.id.complexNumber_basicOperations:
                 Intent c = new Intent(this, ComplexNumberBasicOperations.class);
                 this.startActivity(c);
