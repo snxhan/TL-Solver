@@ -52,6 +52,7 @@ public class VariablesSolver extends AppCompatActivity {
         EditText etVg_im_inputs = findViewById(R.id.vg_inputs_im);
         EditText etZg_re_inputs = findViewById(R.id.zg_inputs_re);
         EditText etZg_im_inputs = findViewById(R.id.zg_inputs_im);
+        EditText etLambda_inputs = findViewById(R.id.et_lambda_inputs);
         // When Solve button has been clicked
         buttonSolve.setOnClickListener(V -> {
             // Get values from ET. Set default to zero, if there is input then replace
@@ -59,11 +60,12 @@ public class VariablesSolver extends AppCompatActivity {
             double zl_re = 0.0;
             double zl_im = 0.0;
             double z0 = 0.0;
-            // FORMULA 2: COMPUTING POWER LOAD (requires: Zl & Z0, Vg and Zg)
+            // FORMULA 2: COMPUTING POWER LOAD (requires: Zl & Z0, Vg and Zg, Lambda)
             double vg_re = 0.0;
             double vg_im = 0.0;
             double zg_re = 0.0;
             double zg_im = 0.0;
+            double lambda = 0.0;
 
             if (etZl_re_inputs.getText().toString().trim().length() != 0)
                 zl_re = Double.parseDouble(String.valueOf(etZl_re_inputs.getText()));
@@ -80,6 +82,8 @@ public class VariablesSolver extends AppCompatActivity {
                 zg_re = Double.parseDouble(String.valueOf(etZg_re_inputs.getText()));
             if (etZg_im_inputs.getText().toString().trim().length() != 0)
                 zg_im = Double.parseDouble(String.valueOf(etZg_im_inputs.getText()));
+            if (etLambda_inputs.getText().toString().trim().length() != 0)
+                lambda = Double.parseDouble(String.valueOf(etLambda_inputs.getText()));
 
             // ==================================================================================================== //
             // FORMULA 1: COMPUTING REFLECTION COEFFICIENT (requires: Zl & Z0)
@@ -134,7 +138,7 @@ public class VariablesSolver extends AppCompatActivity {
             mvPower_outputs_results.setDisplayText( power_answer + "&nbsp;$W$");
 
             // Set steps
-            mvPowerStepsBySteps.setDisplayText(Formulas.powerLoad_steps_1_1(complex_zl, complex_z0, complex_vg, complex_zg));
+            mvPowerStepsBySteps.setDisplayText(Formulas.powerLoad_steps_1_1(complex_zl, complex_z0, complex_vg, complex_zg, lambda));
 
             // Apply background colour to sub-expansions
         });
@@ -142,6 +146,7 @@ public class VariablesSolver extends AppCompatActivity {
         // When test button is pressed, load default inputs
         buttonTest.setOnClickListener(V -> {
             etZ0_inputs.setText(String.valueOf(75)); //z0
+            etLambda_inputs.setText(String.valueOf(0.7));
             etZl_re_inputs.setText(String.valueOf(60));
             etZl_im_inputs.setText(String.valueOf(-40));
             etVg_re_inputs.setText(String.valueOf(15));

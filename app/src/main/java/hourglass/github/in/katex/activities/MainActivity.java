@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     // Shared Preferences - decimal places (dp)
     public static String loadDP() {
         // 3 as default
-        return sharedPreferences.getString("dp", "3");
+        return sharedPreferences.getString("dp", "6");
     }
 
     // animation for back button pressed NOT USED

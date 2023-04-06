@@ -260,7 +260,7 @@ public class Formulas {
     /**
      * FORMULA t2s_1 : Power Load
      */
-    public static String powerLoad_steps_1_1(Complex zl, Complex z0, Complex vg, Complex zg){
+    public static String powerLoad_steps_1_1(Complex zl, Complex z0, Complex vg, Complex zg, double lambda){
         String steps = "";
 
         Complex static_eight = new Complex (8, 0);
@@ -269,7 +269,7 @@ public class Formulas {
         String reflectionCoefficient_answer = Formulas.reflectionCoefficient_answer(zl, z0).replace("$", "");
 
         steps += "Step 1: Recall $P_L$ (Power Load) formula:<br><span style='color:red;'>$P_L = \\frac{(V_g)^2}{8Z_g}(1-\\vert\\Gamma_L\\vert^2)$</span><br><br>";
-        steps += "Step 2: Compute $\\Gamma_L$ (Reflection Coefficient) <br>Expand for detailed steps. <br>";
+        steps += "Step 2: Compute $\\Gamma_L$ (Reflection Coefficient) <br>Refer to Ref Coeff Steps for detailed steps. <br>";
         steps += "$\\Gamma_L = " + ((zl.minus(z0)).divides(zl.plus(z0))) + "$<br><br>";
         steps += "Step 3: Substitute inputs into $P_L$ formula:<br>";
         steps += "$P_L = \\frac{(" + vg.re() + " + " + vg.im() + "i)^2}{8(" + zg.re() + " + " + zg.im() + "i)}(1-\\vert " + reflectionCoefficient_answer + "\\vert^2)$ <br><br>";
@@ -280,7 +280,59 @@ public class Formulas {
         steps += "Step 6: Expand:<br>";
         steps += "$P_L = \\frac{" + vg.times(vg) + "}{" + static_eight.times(zg) + "}(" + static_one.minus(abs_refCoeff_squared)+ ")$<br><br>";
         steps += "Step 7: Answer:<br>";
-        steps += "$P_L = " + (vg.times(vg).divides(static_eight.times(zg))).times(static_one.minus(abs_refCoeff_squared)) +"\\text{ W}$<br><br>";
+        steps += "$P_L = " + (vg.times(vg).divides(static_eight.times(zg))).times(static_one.minus(abs_refCoeff_squared)) +"\\text{ W}$<br><br><br><br>";
+
+        //alternative answer
+        steps += "Step 1: Recall $P_L$ (Power Load) formula:<br>" +
+                "<span style='color:red;'>$P_{L} = \\frac{1}{2} \\vert \\frac{V_g}{Z_g + Z_{in}} \\vert ^2 \\real (Z_{in})$</span><br><br>";
+        steps += "Step 2: To use Power Load formula, we need to compute $Z_{in}$ <br>" +
+                " <span style='color:blue;'>$\\Zeta_{in} = \\Zeta_0\\frac{\\Zeta_L + j\\Zeta_0\\tan (\\beta \\ell)}{\\Zeta_0 + j\\Zeta_L\\tan (\\beta \\ell)}$</span> <br><br>";
+        steps += "Step 3: Recall $\\beta$ formula<br> " +
+                "<span style='color:blue;'>$\\beta = \\frac{2\\pi}{\\lambda}$</span> <br><br>";
+        steps += "Step 4: Substitute inputs into formula <br>" +
+                "$\\Zeta_{in} = "  +  z0 + "\\frac{(" + zl + ")+ j&nbsp;(" + z0 + ")&nbsp;tan(\\frac{2\\pi}{\\lambda}" + lambda +"\\lambda)}{(" + z0 + ")+ j&nbsp;(" + zl + ")&nbsp;tan(\\frac{2\\pi}{\\lambda}" + lambda +"\\lambda)}$ <br><br>";
+        steps += "Step 5: Cancel out $\\lambda$<br>" +
+                "$\\Zeta_{in} = "  +  z0 + "\\frac{(" + zl + ")+ j&nbsp;(" + z0 + ")&nbsp;tan(2\\pi \\times" + lambda +")}{(" + z0 + ")+ j&nbsp;(" + zl + ")&nbsp;tan(2\\pi \\times" + lambda +")}$ <br><br>";
+        steps += "Step 6: Use Calculator in Pi mode for Complex Operations <br>";
+
+        Complex static_two = new Complex (2, 0);
+        Complex static_pie = new Complex (Math.PI, 0);
+        Complex static_lambda = new Complex (lambda, 0);
+        Complex static_half = new Complex (0.5, 0);
+
+        Complex static_imag = new Complex(0, 1);
+
+        Complex zin = new Complex(z0.times(((zl.plus(static_imag.times(z0).times((static_two.times(static_pie).times(static_lambda)).tan()))).divides(z0.plus(static_imag.times(zl).times((static_two.times(static_pie).times(static_lambda)).tan()))))).re(), z0.times(((zl.plus(static_imag.times(z0).times((static_two.times(static_pie).times(static_lambda)).tan()))).divides(z0.plus(static_imag.times(zl).times((static_two.times(static_pie).times(static_lambda)).tan()))))).im());
+
+        steps += "$\\Zeta_{in} = " + zin + "$ <br><br>";
+
+//        tan calculation
+//        ((static_two.times(static_pie).times(static_lambda)).tan());
+//        top calculation
+//        steps += zl.plus(static_imag.times(z0).times((static_two.times(static_pie).times(static_lambda)).tan())) + "<br>";
+//        bottom calculation
+//        steps += z0.plus(static_imag.times(zl).times((static_two.times(static_pie).times(static_lambda)).tan())) + "<br>";
+
+        steps += "Step 7: Substitute inputs into $P_{L}$ formula: <br>";
+        steps += "$P_{L} = \\frac{1}{2} \\vert \\frac{V_g}{Z_g + Z_{in}} \\vert ^2 \\real (Z_{in})$ <br>";
+        steps += "$P_{L} = \\frac{1}{2} \\vert \\frac{ " + vg + "}{" + zg  + " + (" + zin + ")} \\vert ^2 (" + zin.re() + ")$ <br><br>";
+
+        steps += "Step 8: Expand inner abs equation: <br>";
+        steps += "$P_{L} = \\frac{1}{2} \\vert "  + vg.divides(zg.plus(zin)) + " \\vert ^2 (" + zin.re() + ")$ <br><br>";
+
+        Complex temporary_ans = new Complex((vg.divides(zg.plus(zin))).abs(), 0);
+
+        steps += "Step 9: Calculate abs value of complex number: <br>";
+        steps += "$P_{L} = \\frac{1}{2} (" + temporary_ans + ") ^2 (" + zin.re() + ")$ <br><br>";
+
+        steps += "Step 10: Calculate squared value of complex number: <br>";
+        steps += "$P_{L} = \\frac{1}{2} (" + temporary_ans.times(temporary_ans) + ") (" + zin.re() + ")$ <br><br>";
+
+        Complex zin_real = new Complex(zin.re(), 0);
+
+        steps += "Step 11: Answer: <br>";
+        steps += "$P_{L} = " + (static_half.times(temporary_ans.times(temporary_ans))).times(zin_real) + "\\text{ W}$<br>";
+
         return steps;
     }
 }

@@ -28,5 +28,6 @@
     <color name="ColorDefault">#9E9E9E</color>
     <color name="background">#ededed</color>
     <color name="gray">#DCDCDC</color>
+    <color name="darkblue">#00008b</color>
 
 </resources>

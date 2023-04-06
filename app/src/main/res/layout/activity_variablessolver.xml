@@ -110,53 +110,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/laHeader" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/freq_inputs"-->
+<!--            <androidx.constraintlayout.widget.Group-->
 <!--                android:layout_width="wrap_content"-->
 <!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="36dp"-->
-<!--                android:text="Frequency"-->
-<!--                android:textColor="@color/primary_text"-->
-<!--                app:layout_constraintEnd_toEndOf="@+id/verticalGuideline_inputs"-->
-<!--                app:layout_constraintHorizontal_bias="0.475"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/charImp_inputs" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/lineLen_inputs"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="40dp"-->
-<!--                android:text="Line Length"-->
-<!--                android:textColor="@color/primary_text"-->
-<!--                app:layout_constraintEnd_toEndOf="@+id/verticalGuideline_inputs"-->
-<!--                app:layout_constraintHorizontal_bias="0.503"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/freq_inputs" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/relPer_inputs"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="36dp"-->
-<!--                android:text="Relative Permittivity"-->
-<!--                android:textColor="@color/primary_text"-->
-<!--                app:layout_constraintEnd_toEndOf="@+id/verticalGuideline_inputs"-->
-<!--                app:layout_constraintHorizontal_bias="0.481"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/lineLen_inputs" />-->
-
-            <androidx.constraintlayout.widget.Group
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="277dp"
-                tools:layout_editor_absoluteY="158dp" />
+<!--                tools:layout_editor_absoluteX="277dp"-->
+<!--                tools:layout_editor_absoluteY="158dp" />-->
 
             <EditText
                 android:id="@+id/etZ0_inputs"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -179,47 +143,54 @@
                 app:setClickable="false"
                 app:layout_constraintTop_toBottomOf="@+id/laHeader" />
 
-<!--            <EditText-->
-<!--                android:id="@+id/etFreq_inputs"-->
-<!--                android:layout_width="100dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="12dp"-->
-<!--                android:ems="10"-->
-<!--                android:inputType="textPersonName"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.266"-->
-<!--                app:layout_constraintStart_toStartOf="@+id/verticalGuideline_inputs"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/etZ0_inputs" />-->
+            <katex.hourglass.in.mathlib.MathView
+                android:id="@+id/lineLength_inputs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:setText="Line Length, $\\ell$"
+                app:setTextSize="7sp"
+                android:textColor="@color/primary_text"
+                app:layout_constraintEnd_toEndOf="@+id/verticalGuideline_inputs"
+                app:layout_constraintHorizontal_bias="0.5"
+                android:layout_gravity="center"
+                app:setClickable="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/charImp_inputs" />
 
-<!--            <EditText-->
-<!--                android:id="@+id/etLineLen_inputs"-->
-<!--                android:layout_width="100dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="12dp"-->
-<!--                android:ems="10"-->
-<!--                android:inputType="textPersonName"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.266"-->
-<!--                app:layout_constraintStart_toStartOf="@+id/verticalGuideline_inputs"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/etFreq_inputs" />-->
+            <EditText
+                android:id="@+id/et_lambda_inputs"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.266"
+                app:layout_constraintStart_toStartOf="@+id/verticalGuideline_inputs"
+                app:layout_constraintTop_toBottomOf="@+id/etZ0_inputs" />
 
-<!--            <EditText-->
-<!--                android:id="@+id/etRelPer_inputs"-->
-<!--                android:layout_width="100dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="12dp"-->
-<!--                android:ems="10"-->
-<!--                android:inputType="textPersonName"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.266"-->
-<!--                app:layout_constraintStart_toStartOf="@+id/verticalGuideline_inputs"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/etLineLen_inputs" />-->
+            <katex.hourglass.in.mathlib.MathView
+                android:id="@+id/lineLength_inputs_units"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="35dp"
+                app:setText="lambda ($\\lambda$)"
+                app:setTextSize="7sp"
+                android:textColor="@color/primary_text"
+                app:layout_constraintStart_toEndOf="@+id/etZ0_inputs"
+                app:layout_constraintHorizontal_bias="0.5"
+                android:layout_gravity="center"
+                app:setClickable="false"
+                app:layout_constraintTop_toBottomOf="@+id/etZ0_inputs_units" />
+
 
             <TextView
                 android:id="@+id/loadHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="28dp"
                 android:background="@color/background"
                 android:gravity="left"
                 android:text="Load"
@@ -228,7 +199,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etZ0_inputs" />
+                app:layout_constraintTop_toBottomOf="@+id/lineLength_inputs" />
 
             <katex.hourglass.in.mathlib.MathView
                 android:id="@+id/zl_inputs"

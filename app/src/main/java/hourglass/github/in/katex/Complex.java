@@ -46,6 +46,8 @@ public class Complex {
         // set decimal places
         re = Double.parseDouble(String.format("%." + (Integer.valueOf(MainActivity.loadDP())) + "f", real));
         im = Double.parseDouble(String.format("%." + (Integer.valueOf(MainActivity.loadDP())) + "f", imag));
+//        re = real;
+//        im = imag;
     }
 
     // return a string representation of the invoking Complex object
