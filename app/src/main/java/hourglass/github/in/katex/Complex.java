@@ -38,16 +38,25 @@ import hourglass.github.in.katex.activities.MainActivity;
 import hourglass.github.in.katex.activities.VariablesSolver;
 
 public class Complex {
-    private final double re;   // the real part
-    private final double im;   // the imaginary part
+    private double re;   // the real part
+    private double im;   // the imaginary part
 
     // create a new object with the given real and imaginary parts
     public Complex(double real, double imag) {
         // set decimal places
-        re = Double.parseDouble(String.format("%." + (Integer.valueOf(MainActivity.loadDP())) + "f", real));
-        im = Double.parseDouble(String.format("%." + (Integer.valueOf(MainActivity.loadDP())) + "f", imag));
-//        re = real;
-//        im = imag;
+//        re = Double.parseDouble(String.format("%." + (Integer.valueOf(MainActivity.loadDP())) + "f", real));
+//        im = Double.parseDouble(String.format("%." + (Integer.valueOf(MainActivity.loadDP())) + "f", imag));
+        re = real;
+        im = imag;
+    }
+
+    public Complex sprintf(){
+        Complex input = this;
+        // set decimal places
+        re = Double.parseDouble(String.format("%." + (Integer.valueOf(MainActivity.loadDP())) + "f", input.re));
+        im = Double.parseDouble(String.format("%." + (Integer.valueOf(MainActivity.loadDP())) + "f", input.im));
+        Complex output = new Complex(re, im);
+        return output;
     }
 
     // return a string representation of the invoking Complex object

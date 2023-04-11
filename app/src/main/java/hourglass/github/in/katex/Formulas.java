@@ -2,6 +2,8 @@ package hourglass.github.in.katex;
 
 import java.text.DecimalFormat;
 
+import hourglass.github.in.katex.activities.MainActivity;
+
 /**
  * @since 03 January 2023
  * @author Soh Xin Han
@@ -172,7 +174,7 @@ public class Formulas {
      */
     public static String reflectionCoefficient_answer(Complex zl, Complex z0){
         String answer = "";
-        answer = "$" + zl.minus(z0).divides(zl.plus(z0)).toString() + "$";
+        answer = "$" + zl.minus(z0).divides(zl.plus(z0)).sprintf().toString() + "$";
         return answer;
     }
     /**
@@ -254,7 +256,7 @@ public class Formulas {
         Complex static_eight = new Complex (8, 0);
         Complex static_one = new Complex (1, 0);
         Complex abs_refCoeff_squared = new Complex(((zl.minus(z0)).divides(zl.plus(z0)).abs()) * ((zl.minus(z0)).divides(zl.plus(z0)).abs()),0);
-        answer = "$" + (((vg.times(vg)).divides(static_eight.times(zg))).times(static_one.minus(abs_refCoeff_squared))).toString() + "$";
+        answer = "$" + (((vg.times(vg)).divides(static_eight.times(zg))).times(static_one.minus(abs_refCoeff_squared))).sprintf().toString() + "$";
         return answer;
     }
     /**
@@ -271,6 +273,7 @@ public class Formulas {
         steps += "Step 1: Recall $P_L$ (Power Load) formula:<br><span style='color:red;'>$P_L = \\frac{(V_g)^2}{8Z_g}(1-\\vert\\Gamma_L\\vert^2)$</span><br><br>";
         steps += "Step 2: Compute $\\Gamma_L$ (Reflection Coefficient) <br>Refer to Ref Coeff Steps for detailed steps. <br>";
         steps += "$\\Gamma_L = " + ((zl.minus(z0)).divides(zl.plus(z0))) + "$<br><br>";
+        steps += "test" + Double.parseDouble(String.format("%." + (Integer.valueOf(MainActivity.loadDP())) + "f", ((zl.minus(z0)).divides(zl.plus(z0))).re()));
         steps += "Step 3: Substitute inputs into $P_L$ formula:<br>";
         steps += "$P_L = \\frac{(" + vg.re() + " + " + vg.im() + "i)^2}{8(" + zg.re() + " + " + zg.im() + "i)}(1-\\vert " + reflectionCoefficient_answer + "\\vert^2)$ <br><br>";
         steps += "Step 4: Calculate value of $\\vert\\Gamma_L\\vert$:<br>";

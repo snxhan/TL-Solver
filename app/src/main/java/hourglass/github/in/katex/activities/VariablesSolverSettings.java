@@ -24,7 +24,7 @@ public class VariablesSolverSettings extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_variablessolver_settings);
-        String [] settingsArray = new String[]{"Set decimal places", "Set rounding mode"};
+        String [] settingsArray = new String[]{"Set answer decimal places", ""};
         ArrayAdapter settingsAdapter = new ArrayAdapter(this, R.layout.activity_variablessolver_settings_listview, settingsArray);
         ListView settingsListView = (ListView) findViewById(R.id.variablesSolverSettingsList);
         settingsListView.setAdapter(settingsAdapter);
