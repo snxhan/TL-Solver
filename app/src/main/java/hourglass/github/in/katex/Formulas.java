@@ -42,7 +42,7 @@ public class Formulas {
      */
     public static String addComplex_answer(Complex a, Complex b){
         String answer = "";
-        answer = "$" + (a.plus(b)).toString() + "$";
+        answer = "$" + (a.plus(b)).sprintf().toString() + "$";
         return answer;
     }
     /**
@@ -64,7 +64,7 @@ public class Formulas {
      */
     public static String subtractComplex_answer(Complex a, Complex b){
         String answer = "";
-        answer = "$" + (a.minus(b)).toString() + "$";
+        answer = "$" + (a.minus(b)).sprintf().toString() + "$";
         return answer;
     }
     /**
@@ -86,7 +86,7 @@ public class Formulas {
      */
     public static String multiplyComplex_answer(Complex a, Complex b){
         String answer = "";
-        answer = "$" + (a.times(b)).toString() + "$";
+        answer = "$" + (a.times(b)).sprintf().toString() + "$";
         return answer;
     }
     /**
@@ -110,7 +110,7 @@ public class Formulas {
      */
     public static String divideComplex_answer(Complex a, Complex b){
         String answer = "";
-        answer = "$" + (a.divides(b)).toString() + "$";
+        answer = "$" + (a.divides(b)).sprintf().toString() + "$";
         return answer;
     }
     /**
@@ -185,7 +185,6 @@ public class Formulas {
 
         // Format whole number to remove .0
         DecimalFormat df = new DecimalFormat();
-        df.setDecimalSeparatorAlwaysShown(false);
 
         // Track zl imaginary sign and put in imaginary sign
         String new_zl_im = "";
@@ -196,7 +195,7 @@ public class Formulas {
 
         steps += "Step 1: Recall $\\Gamma$ (Gamma) formula:<br><span style='color:red;'>$\\Gamma = \\frac{\\Zeta_L -\\Zeta_0}{\\Zeta_L +\\Zeta_0}$</span><br><br>";
         steps += "Step 2: Substitute with given inputs:<br>";
-        steps += "$\\Gamma =\\frac{(" + df.format(zl.re()) + (new_zl_im) + ")-(" + (z0.re()) + ")}{(" + zl.re() + new_zl_im + ")+(" + (z0.re()) + ")}$<br><br>";
+        steps += "$\\Gamma =\\frac{(" + (zl.re()) + (new_zl_im) + ")-(" + (z0.re()) + ")}{(" + zl.re() + new_zl_im + ")+(" + (z0.re()) + ")}$<br><br>";
         steps += "Step 3: Group real parts and imaginary parts and simplify: <br> <span style='color:red;'><i>*Compute using calculator</i></span><br> ";
         steps += "$\\Gamma =\\frac{(" + (zl.re() - z0.re()) + ")+(" + (new_zl_im) + ")}{(" + (zl.re() + z0.re()) + ")+(" + new_zl_im + ")}$<br>";
 
@@ -262,7 +261,7 @@ public class Formulas {
     /**
      * FORMULA t2s_1 : Power Load
      */
-    public static String powerLoad_steps_1_1(Complex zl, Complex z0, Complex vg, Complex zg, double lambda){
+    public static String powerLoad_steps_1_1(Complex zl, Complex z0, Complex vg, Complex zg){
         String steps = "";
 
         Complex static_eight = new Complex (8, 0);
@@ -273,7 +272,6 @@ public class Formulas {
         steps += "Step 1: Recall $P_L$ (Power Load) formula:<br><span style='color:red;'>$P_L = \\frac{(V_g)^2}{8Z_g}(1-\\vert\\Gamma_L\\vert^2)$</span><br><br>";
         steps += "Step 2: Compute $\\Gamma_L$ (Reflection Coefficient) <br>Refer to Ref Coeff Steps for detailed steps. <br>";
         steps += "$\\Gamma_L = " + ((zl.minus(z0)).divides(zl.plus(z0))) + "$<br><br>";
-        steps += "test" + Double.parseDouble(String.format("%." + (Integer.valueOf(MainActivity.loadDP())) + "f", ((zl.minus(z0)).divides(zl.plus(z0))).re()));
         steps += "Step 3: Substitute inputs into $P_L$ formula:<br>";
         steps += "$P_L = \\frac{(" + vg.re() + " + " + vg.im() + "i)^2}{8(" + zg.re() + " + " + zg.im() + "i)}(1-\\vert " + reflectionCoefficient_answer + "\\vert^2)$ <br><br>";
         steps += "Step 4: Calculate value of $\\vert\\Gamma_L\\vert$:<br>";
@@ -285,7 +283,17 @@ public class Formulas {
         steps += "Step 7: Answer:<br>";
         steps += "$P_L = " + (vg.times(vg).divides(static_eight.times(zg))).times(static_one.minus(abs_refCoeff_squared)) +"\\text{ W}$<br><br><br><br>";
 
+
+        return steps;
+    }
+    /**
+     * FORMULA t2s_2 : Power Load
+     */
+    public static String powerLoad_steps_1_2(Complex zl, Complex z0, Complex vg, Complex zg, double lambda){
+        String steps = "";
+
         //alternative answer
+        steps += "<b>Alternative Answer</b><br>";
         steps += "Step 1: Recall $P_L$ (Power Load) formula:<br>" +
                 "<span style='color:red;'>$P_{L} = \\frac{1}{2} \\vert \\frac{V_g}{Z_g + Z_{in}} \\vert ^2 \\real (Z_{in})$</span><br><br>";
         steps += "Step 2: To use Power Load formula, we need to compute $Z_{in}$ <br>" +

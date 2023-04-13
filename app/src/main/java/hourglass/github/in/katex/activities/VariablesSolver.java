@@ -67,23 +67,97 @@ public class VariablesSolver extends AppCompatActivity {
             double zg_im = 0.0;
             double lambda = 0.0;
 
-            if (etZl_re_inputs.getText().toString().trim().length() != 0)
-                zl_re = Double.parseDouble(String.valueOf(etZl_re_inputs.getText()));
-            if (etZl_im_inputs.getText().toString().trim().length() != 0)
-                zl_im = Double.parseDouble(String.valueOf(etZl_im_inputs.getText()));
-            if (etZ0_inputs.getText().toString().trim().length() != 0)
-                z0 = Double.parseDouble(String.valueOf(etZ0_inputs.getText()));
+            boolean isthere_zl = false;
+            boolean isthere_zl_re = false;
+            boolean isthere_zl_im = false;
 
-            if (etVg_re_inputs.getText().toString().trim().length() != 0)
+            boolean isthere_z0 = false;
+
+            boolean isthere_vg = false;
+            boolean isthere_vg_re = false;
+            boolean isthere_vg_im = false;
+
+            boolean isthere_zg = false;
+            boolean isthere_zg_re = false;
+            boolean isthere_zg_im = false;
+
+            boolean isthere_lambda = false;
+
+            if (etZl_re_inputs.getText().toString().trim().length() != 0){
+                zl_re = Double.parseDouble(String.valueOf(etZl_re_inputs.getText()));
+                isthere_zl_re = true;
+            }
+            if (etZl_im_inputs.getText().toString().trim().length() != 0){
+                zl_im = Double.parseDouble(String.valueOf(etZl_im_inputs.getText()));
+                isthere_zl_im = true;
+            }
+            if (etZ0_inputs.getText().toString().trim().length() != 0){
+                z0 = Double.parseDouble(String.valueOf(etZ0_inputs.getText()));
+                isthere_z0 = true;
+            }
+            if (etVg_re_inputs.getText().toString().trim().length() != 0){
                 vg_re = Double.parseDouble(String.valueOf(etVg_re_inputs.getText()));
-            if (etVg_im_inputs.getText().toString().trim().length() != 0)
+                isthere_vg_re = true;
+            }
+            if (etVg_im_inputs.getText().toString().trim().length() != 0){
                 vg_im = Double.parseDouble(String.valueOf(etVg_im_inputs.getText()));
-            if (etZg_re_inputs.getText().toString().trim().length() != 0)
+                isthere_vg_im = true;
+            }
+            if (etZg_re_inputs.getText().toString().trim().length() != 0){
                 zg_re = Double.parseDouble(String.valueOf(etZg_re_inputs.getText()));
-            if (etZg_im_inputs.getText().toString().trim().length() != 0)
+                isthere_zg_re = true;
+            }
+            if (etZg_im_inputs.getText().toString().trim().length() != 0){
                 zg_im = Double.parseDouble(String.valueOf(etZg_im_inputs.getText()));
-            if (etLambda_inputs.getText().toString().trim().length() != 0)
+                isthere_zg_im = true;
+            }
+            if (etLambda_inputs.getText().toString().trim().length() != 0){
                 lambda = Double.parseDouble(String.valueOf(etLambda_inputs.getText()));
+                isthere_lambda = true;
+            }
+
+            if (isthere_zl_re || isthere_zl_im){
+                isthere_zl = true;
+            }
+            if(isthere_vg_im || isthere_vg_re){
+                isthere_vg = true;
+            }
+            if(isthere_zg_im || isthere_zg_re){
+                isthere_zg = true;
+            }
+
+            boolean isthere_refCoeff = false;
+            if (isthere_zl && isthere_z0){
+                isthere_refCoeff = true;
+            }
+
+            boolean isthere_power1 = false;
+            if (isthere_vg && isthere_zg && isthere_refCoeff){
+                isthere_power1 = true;
+            }
+
+            boolean isthere_power2 = false;
+            if (isthere_vg && isthere_zg && isthere_z0 && isthere_zl && isthere_lambda){
+                isthere_power2 = true;
+            }
+
+//            if (etZl_re_inputs.getText().toString().trim().length() != 0)
+//                zl_re = Double.parseDouble(String.valueOf(etZl_re_inputs.getText()));
+//            if (etZl_im_inputs.getText().toString().trim().length() != 0)
+//                zl_im = Double.parseDouble(String.valueOf(etZl_im_inputs.getText()));
+//            if (etZ0_inputs.getText().toString().trim().length() != 0)
+//                z0 = Double.parseDouble(String.valueOf(etZ0_inputs.getText()));
+//
+//            if (etVg_re_inputs.getText().toString().trim().length() != 0)
+//                vg_re = Double.parseDouble(String.valueOf(etVg_re_inputs.getText()));
+//            if (etVg_im_inputs.getText().toString().trim().length() != 0)
+//                vg_im = Double.parseDouble(String.valueOf(etVg_im_inputs.getText()));
+//            if (etZg_re_inputs.getText().toString().trim().length() != 0)
+//                zg_re = Double.parseDouble(String.valueOf(etZg_re_inputs.getText()));
+//            if (etZg_im_inputs.getText().toString().trim().length() != 0)
+//                zg_im = Double.parseDouble(String.valueOf(etZg_im_inputs.getText()));
+//            if (etLambda_inputs.getText().toString().trim().length() != 0)
+//                lambda = Double.parseDouble(String.valueOf(etLambda_inputs.getText()));
 
             // ==================================================================================================== //
             // FORMULA 1: COMPUTING REFLECTION COEFFICIENT (requires: Zl & Z0)
@@ -106,18 +180,29 @@ public class VariablesSolver extends AppCompatActivity {
             MathView mvRefCoeffStepsBySteps_1_3 = findViewById(R.id.mvRefCoeffStepsBySteps_1_3);
 
             // Get answer and set results
-            String refCoeff_answer = Formulas.reflectionCoefficient_answer(complex_zl, complex_z0);
-            refCoeff_outputs_results.setDisplayText(refCoeff_answer);
+            if (isthere_refCoeff){
+                String refCoeff_answer = Formulas.reflectionCoefficient_answer(complex_zl, complex_z0);
+                refCoeff_outputs_results.setDisplayText(refCoeff_answer);
 
-            // Set 1, 1.1, 1.2 step-by-step solution to Front-end
-            mvRefCoeffStepsBySteps_1_1.setDisplayText(Formulas.reflectionCoefficient_steps_1_1(complex_zl, complex_z0));
-            mvRefCoeffStepsBySteps_1_2.setDisplayText(Formulas.reflectionCoefficient_steps_1_2(complex_zl, complex_z0));
-            mvRefCoeffStepsBySteps_1_1_1.setDisplayText(Formulas.reflectionCoefficient_steps_1_1_1(complex_zl, complex_z0));
-            mvRefCoeffStepsBySteps_1_3.setDisplayText(Formulas.reflectionCoefficient_steps_1_3(complex_zl, complex_z0));
+                // Set 1, 1.1, 1.2 step-by-step solution to Front-end
+                mvRefCoeffStepsBySteps_1_1.setDisplayText(Formulas.reflectionCoefficient_steps_1_1(complex_zl, complex_z0));
+                mvRefCoeffStepsBySteps_1_2.setDisplayText(Formulas.reflectionCoefficient_steps_1_2(complex_zl, complex_z0));
+                mvRefCoeffStepsBySteps_1_1_1.setDisplayText(Formulas.reflectionCoefficient_steps_1_1_1(complex_zl, complex_z0));
+                mvRefCoeffStepsBySteps_1_3.setDisplayText(Formulas.reflectionCoefficient_steps_1_3(complex_zl, complex_z0));
 
-            // Apply background colour to sub-expansions
-            mvRefCoeffStepsBySteps_1_2.setViewBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
-            mvRefCoeffStepsBySteps_1_3.setViewBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
+                // Apply background colour to sub-expansions
+                mvRefCoeffStepsBySteps_1_2.setViewBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
+                mvRefCoeffStepsBySteps_1_3.setViewBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
+            }else{
+                refCoeff_outputs_results.setDisplayText("Missing variables");
+                String variablesStatus = "Formula, ";
+                variablesStatus += "$\\Gamma = \\frac{\\Zeta_L -\\Zeta_0}{\\Zeta_L +\\Zeta_0}$ <br>";
+                variablesStatus += "Variables Given: <br>";
+                variablesStatus += "$\\Zeta_L$ = " + isthere_zl + "<br>";
+                variablesStatus += "$\\Zeta_0$ = " + isthere_z0 + "";
+
+                mvRefCoeffStepsBySteps_1_1.setDisplayText(variablesStatus);
+            }
 
             // ==================================================================================================== //
             // FORMULA 2: COMPUTING POWER LOAD (requires: Zl & Z0, Vg and Zg)
@@ -132,15 +217,46 @@ public class VariablesSolver extends AppCompatActivity {
             // Init variables
             MathView mvPower_outputs_results = findViewById(R.id.power_outputs_results);
             MathView mvPowerStepsBySteps = findViewById(R.id.mvPowerStepsBySteps);
+            MathView mvPowerStepsBySteps2 = findViewById(R.id.mvPowerStepsBySteps2);
 
-            // Get answer and set result
-            String power_answer = Formulas.powerLoad_answer(complex_zl, complex_z0, complex_vg, complex_zg);
-            mvPower_outputs_results.setDisplayText( power_answer + "&nbsp;$W$");
+            if(!isthere_power1 || !isthere_power2){
+                mvPower_outputs_results.setDisplayText("Missing variables");
+            }
 
-            // Set steps
-            mvPowerStepsBySteps.setDisplayText(Formulas.powerLoad_steps_1_1(complex_zl, complex_z0, complex_vg, complex_zg, lambda));
+            if(isthere_power1){
+                // Get (bug)EITHER answer and set result
+                String power_answer = Formulas.powerLoad_answer(complex_zl, complex_z0, complex_vg, complex_zg);
+                mvPower_outputs_results.setDisplayText(power_answer + "&nbsp;$W$");
 
-            // Apply background colour to sub-expansions
+                // Set steps
+                mvPowerStepsBySteps.setDisplayText(Formulas.powerLoad_steps_1_1(complex_zl, complex_z0, complex_vg, complex_zg));
+            }else{
+                String variablesStatus = "Formula, ";
+                variablesStatus += "$P_L = \\frac{(V_g)^2}{8Z_g}(1-\\vert\\Gamma_L\\vert^2)$ <br>";
+                variablesStatus += "Variables Given: <br>";
+                variablesStatus += "$\\Zeta_L$ = " + isthere_zl + "<br>";
+                variablesStatus += "$\\Zeta_0$ = " + isthere_z0 + "<br>";
+                variablesStatus += "$\\Zeta_g$ = " + isthere_zg + "<br>";
+                variablesStatus += "$V_g$ = " + isthere_vg;
+
+                mvPowerStepsBySteps.setDisplayText(variablesStatus);
+            }
+
+            if(isthere_power2){
+                // Set steps
+                mvPowerStepsBySteps2.setDisplayText(Formulas.powerLoad_steps_1_2(complex_zl, complex_z0, complex_vg, complex_zg, lambda));
+            }else{
+                String variablesStatus = "Formula, ";
+                variablesStatus += "$P_{L} = \\frac{1}{2} \\vert \\frac{V_g}{Z_g + Z_{in}} \\vert ^2 \\real (Z_{in})$ <br>";
+                variablesStatus += "Variables Given: <br>";
+                variablesStatus += "$\\Zeta_L$ = " + isthere_zl + "<br>";
+                variablesStatus += "$\\Zeta_0$ = " + isthere_z0 + "<br>";
+                variablesStatus += "$\\Zeta_g$ = " + isthere_zg + "<br>";
+                variablesStatus += "$V_g$ = " + isthere_vg + "<br>";
+                variablesStatus += "$\\ell$ = " + isthere_lambda;
+
+                mvPowerStepsBySteps2.setDisplayText(variablesStatus);
+            }
         });
 
         // When test button is pressed, load default inputs

@@ -43,9 +43,6 @@ public class Complex {
 
     // create a new object with the given real and imaginary parts
     public Complex(double real, double imag) {
-        // set decimal places
-//        re = Double.parseDouble(String.format("%." + (Integer.valueOf(MainActivity.loadDP())) + "f", real));
-//        im = Double.parseDouble(String.format("%." + (Integer.valueOf(MainActivity.loadDP())) + "f", imag));
         re = real;
         im = imag;
     }
