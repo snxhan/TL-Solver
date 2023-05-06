@@ -35,15 +35,22 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Key Inputs:" />
+                android:textSize="20dp"
+                android:textColor="@color/primary_text"
+                android:text="Complex Number Intro:" />
 
-            <EditText
-                android:id="@+id/etBetaRe"
+
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:layout_height="match_parent"
+                android:src="@drawable/complexintro"></ImageView>
+            
+            <Button
+                android:id="@+id/pdfopen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Open PDF"></Button>
+
         </LinearLayout>
 
 

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,8 @@ import androidx.constraintlayout.widget.Group;
 import androidx.core.content.ContextCompat;
 import androidx.transition.AutoTransition;
 import androidx.transition.TransitionManager;
+
+import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 
@@ -179,6 +182,8 @@ public class VariablesSolver extends AppCompatActivity {
             MathView mvRefCoeffStepsBySteps_1_1_1 = findViewById(R.id.mvRefCoeffStepsBySteps_1_1_1);
             MathView mvRefCoeffStepsBySteps_1_3 = findViewById(R.id.mvRefCoeffStepsBySteps_1_3);
 
+
+
             // Get answer and set results
             if (isthere_refCoeff){
                 String refCoeff_answer = Formulas.reflectionCoefficient_answer(complex_zl, complex_z0);
@@ -202,6 +207,9 @@ public class VariablesSolver extends AppCompatActivity {
                 variablesStatus += "$\\Zeta_0$ = " + isthere_z0 + "";
 
                 mvRefCoeffStepsBySteps_1_1.setDisplayText(variablesStatus);
+
+//                TextView manualStepsTV = findViewById(R.id.tvExpand2);
+//                manualStepsTV.setVisibility(View.GONE);
             }
 
             // ==================================================================================================== //

@@ -8,6 +8,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import hourglass.github.in.katex.R;
 
@@ -21,6 +23,15 @@ public class ComplexNumber extends AppCompatActivity {
         getSupportActionBar().setTitle("Complex Number");
         // Back button in toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Button button  = findViewById(R.id.pdfopen);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), PdfActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     // Menu button in toolbar
