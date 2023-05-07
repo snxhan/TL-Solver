@@ -32,13 +32,32 @@ public class ComplexNumber extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button button1 = findViewById(R.id.basicOp);
+        Button button2 = findViewById(R.id.convertPolar);
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ComplexNumberBasicOperations.class);
+                startActivity(intent);
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ComplexNumberPolarForm.class);
+                startActivity(intent);
+            }
+        });
     }
 
     // Menu button in toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.complexnumber_menu, menu);
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.complexnumber_menu, menu);
         return true;
     }
 

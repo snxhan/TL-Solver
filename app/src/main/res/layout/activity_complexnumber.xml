@@ -37,8 +37,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textColor="@color/primary_text"
-                android:text="Complex Number Intro:" />
-
+                android:text="About Complex Number:" />
 
             <ImageView
                 android:layout_width="match_parent"
@@ -49,7 +48,29 @@
                 android:id="@+id/pdfopen"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Open PDF"></Button>
+                android:text="Open Complex Number Lesson PDF"></Button>
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textSize="20dp"
+                android:textColor="@color/primary_text"
+                android:text="Complex Number Calculator:" />
+
+            <Button
+                android:id="@+id/basicOp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="match_parent"
+                android:text="Compute basic operations (+/-/*/÷)"></Button>
+
+            <Button
+                android:id="@+id/convertPolar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Convert Complex Number to Polar Form"></Button>
 
         </LinearLayout>
 
